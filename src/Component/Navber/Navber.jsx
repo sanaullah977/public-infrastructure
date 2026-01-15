@@ -6,7 +6,16 @@ import useAuth from '../../Hooks/useAuth'
 
 const Navber = () => {
 
-  const {user} = useAuth()
+  const {user, logout} = useAuth()
+
+  const handleLogout = () =>{
+    logout()
+    .then()
+    .catch(error => {
+      console.log(error)
+    })
+  }
+
 
 
 
@@ -39,8 +48,8 @@ const Navber = () => {
   <div className="navbar-end">
     {
       user ?
-      <a className='btn'>logout</a> :
-      <Link to='/login'><a className='btn'> login</a></Link>
+      <button onClick={handleLogout} className='btn'>Log Out</button>
+       : <Link to='/login' > <button className='btn'>Log In</button></Link>
     }
   </div>
 </div>
