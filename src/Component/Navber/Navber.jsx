@@ -1,9 +1,15 @@
 import React from 'react'
 import Logo from '../Logo/Logo'
-import { NavLink } from 'react-router'
+import { Link, NavLink } from 'react-router'
+import useAuth from '../../Hooks/useAuth'
 
 
 const Navber = () => {
+
+  const {user} = useAuth()
+
+
+
     const Navber = <>
       <li className='font-semibold'><NavLink to=''><a>Home</a></NavLink></li>
       <li className='font-semibold'><NavLink to='allissues'><a>All Issues</a></NavLink></li>
@@ -31,7 +37,11 @@ const Navber = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Button</a>
+    {
+      user ?
+      <a className='btn'>logout</a> :
+      <Link to='/login'><a className='btn'> login</a></Link>
+    }
   </div>
 </div>
     </div>

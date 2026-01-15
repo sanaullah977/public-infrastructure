@@ -3,7 +3,7 @@ import useAuth from "../../Hooks/useAuth";
 
 const GoogleLogin = () => {
 
-    const {singInGoogle} = useAuth();
+    const { singInGoogle } = useAuth();
 
     const handleGoogleSingin = () =>{
         singInGoogle()
