@@ -14,8 +14,10 @@ import useAuth from "../Hooks/useAuth";
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
-      const [user, setUser] = useState(null);   
+      const [user, setUser] = useState();   
       const [loading, setLoading] = useState(true);   
+
+      
 
 
 
@@ -44,15 +46,17 @@ const AuthProvider = ({ children }) => {
       console.log("Auth user:", currentUser);
       setUser(currentUser);
     });
-    console.log(user);
+   
 
     return () => unSubscribe();
   }, []);
+  console.log(user);
 
   const authInfo = {
     registerUser,
     singInUser,
     singInGoogle,
+    user,
     logout,
   };
   return <AuthContext value={authInfo}>{children}</AuthContext>;

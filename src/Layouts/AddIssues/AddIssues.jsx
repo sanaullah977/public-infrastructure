@@ -1,17 +1,63 @@
-import React from 'react'
+import React, { use } from 'react'
+import { AuthContext } from '../../Context/AuthContext';
+import useAuth from '../../Hooks/useAuth';
+
+ 
 
 const AddIssues = () => {
+
+  const {user} = useAuth();
+
+ console.log(user)
+
+    const handleSubmit = (e) => {
+    e.preventDefault()
+
+    const formData = {
+      title: e.target.title.value,
+      category: e.target.category.value,
+      description: e.target.description.value,
+      image: e.target.image.value,
+      created_at: new Date(),
+      booking: 0,
+      providerEmail: user.email.value,
+      location:e.target.location.value,
+      repoted_by:e.target.reported_by.value,
+      resolve_bugget:e.target.resolve_bugget.value,
+
+    }   
+     console.log(formData)
+
+     fetch(`http://localhost:3000/issues`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData)
+    })
+
+    .then(res => res.json())
+    .then(data=> {
+      
+      console.log(data,"Successfully added!")
+    })
+    .catch(error => {
+      console.log(error)
+    })
+
+  }
+
   return (
-   <div className="card border my-20 border-gray-200 bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl">
+   <div className="card border my-20 border-orange-200 bg-orange-100 w-full max-w-xl mx-auto shadow-2xl rounded-2xl">
       <div className="card-body p-6 relative">
-        <h2 className="text-2xl font-bold text-center mb-6">Add New Model</h2>
-        <form  className="space-y-4">
+        <h2 className="text-2xl font-bold text-center mb-6">Add New Issues</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
           
           <div>
-            <label className="label font-medium">Car Name</label>
+            <label className="label font-medium">Issue Title</label>
             <input
               type="text"
-              name="carName"
+              name="title"
               required
               className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="Enter name"
@@ -22,7 +68,7 @@ const AddIssues = () => {
           <div>
             <label className="label font-medium">Category</label>
             <select
-              defaultValue={""}
+              // defaultValue={""}
               name="category"
               required
               className="select w-full rounded-full focus:border-0 focus:outline-gray-200"
@@ -30,11 +76,11 @@ const AddIssues = () => {
               <option value="" disabled>
                 Select category
               </option>
-              <option value="Sedan">Sedan</option>
-              <option value="SUV">SUV</option>
-              <option value="Hatchback">Hatchback</option>
-              <option value="Luxury">Luxury</option>
-              <option value="Electric">Electric</option>
+              <option value="Garbage">Garbage</option>
+              <option value="Illigal Construction">Illigal Construction</option>
+              <option value="Road Damage">Road Damage</option>
+              <option value="Broken Public Property">Broken Public Property</option>
+              <option value="Electric Issue">Electric Issue</option>
             </select>
           </div>
 
@@ -55,16 +101,16 @@ const AddIssues = () => {
               name="description"
               required
               rows="3"
-             className="textarea w-full rounded-2xl focus:border-0 focus:outline-gray-200 h-[250px]"
+             className="textarea w-full rounded-2xl focus:border-0 focus:outline-gray-200 h-[180px]"
               placeholder="Enter description"
             ></textarea>
           </div>
 
           <div>
-            <label className="label font-medium">Enter Company Name</label>
+            <label className="label font-medium">Reported by </label>
             <input
               type="text"
-              name="providerName"
+              name="reported_by"
               required
               className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="Enter name"
@@ -73,10 +119,10 @@ const AddIssues = () => {
 
           
           <div>
-            <label className="label font-medium">Car URL</label>
+            <label className="label font-medium">Image URL</label>
             <input
               type="url"
-              name="hostedImageUrl"
+              name="image"
               required
               className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="https://example.com/image.jpg"
@@ -84,10 +130,10 @@ const AddIssues = () => {
           </div>
 
           <div>
-            <label className="label font-medium">Price</label>
+            <label className="label font-medium">Resolve Bugget</label>
             <input
               type="number"
-              name="rentPrice"
+              name="resolve_bugget"
               required
               className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="Enter name"
@@ -97,9 +143,9 @@ const AddIssues = () => {
           
           <button
             type="submit"
-            className="btn w-full text-white mt-6 rounded-full bg-linear-to-r from-blue-500 to-red-200 hover:from-pink-600 hover:to-red-700"
+            className="btn w-full text-white mt-6 rounded-full bg-linear-to-r from-orange-500 to-amber-800 hover:from-pink-600 hover:to-red-700"
           >
-            Add Car
+            Add Issue
           </button>
         </form>
       </div>

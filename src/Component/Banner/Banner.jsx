@@ -1,25 +1,26 @@
 import React from 'react'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel'
-import P1 from '../../assets/image (1).jpg'
-import P2 from '../../assets/What_is_a_311_Citizen_Request_Management_Solution-1.jpg'
-import P3 from '../../assets/opu-5-7.webp'
+import P1 from '../../assets/p1.jpg.png'
+import P2 from '../../assets/p2.jpg.png'
+import P3 from '../../assets/p3.jpg.png'
 
 const Banner = () => {
   return (
-    <div>
+    <div >
        <Carousel  autoPlay={true}
-       infiniteLoop={true}>
+       infiniteLoop={true}
+       >
                 <div>
-                    <img  src={P1} />
+                    <img className='rounded-2xl' src={P1} />
                   
                 </div>
                 <div>
-                    <img  src={P2} />
+                    <img className='rounded-2xl' src={P2} />
                     
                 </div>
                 <div>
-                    <img  src={P3} />
+                    <img className='rounded-2xl' src={P3} />
                 
                 </div>
             </Carousel>

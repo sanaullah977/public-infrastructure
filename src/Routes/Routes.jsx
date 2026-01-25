@@ -9,6 +9,7 @@ import AuthProvider from "../Context/AuthProvider";
 import LogIn from "../Pages/Auth/LogIn";
 import Register from "../Pages/Auth/Register";
 import AuthLayout from "../Layouts/AuthLayout/AuthLayout";
+import IssueDetails from "../Layouts/AllIssues/IssueDetails";
 
 export const router = createBrowserRouter([
   {
@@ -18,20 +19,28 @@ export const router = createBrowserRouter([
       {
         index:true,
         Component:Home,
+        loader: () => fetch(`http://localhost:3000/issues`)
       },
-
+      {
+        path:'allissues',
+        Component:AllIssues,
+        loader: () => fetch(`http://localhost:3000/issues`)
+      },
       {
         path:'addissues',
-        Component:AddIssues,     
+        Component:AddIssues,
+        // 
       },
 
       {
-        path:'/allissues',
-        Component:AllIssues
+        path:'issuedetails/:id',
+        Component:IssueDetails,
+        loader: ({params}) => fetch(`http://localhost:3000/issues/${params.id}`)  ,
       },
 
     ]
   },
+  
 
  
   {
