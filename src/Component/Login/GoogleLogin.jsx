@@ -1,5 +1,6 @@
 import React from "react";
 import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const GoogleLogin = () => {
 
@@ -9,10 +10,18 @@ const GoogleLogin = () => {
         singInGoogle()
         .then(result => {
             console.log(result.user)
+            
+Swal.fire({
+  title: "Well Done!",
+  icon: "success",
+  draggable: true
+});
         })
         .catch(error => {
             console.log(error)
         })
+
+        
 
     }
   return (

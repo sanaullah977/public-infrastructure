@@ -31,7 +31,7 @@ const LetestIssues = () => {
          <h2 className="card-title">
            {product.title}
          </h2>
-         <h2 className="">
+         <h2 className="text-gray-600 text-sm md:text-base line-clamp-3 mb-3 ">
            {product.description}
          </h2>
          <div className="card-actions justify-between">

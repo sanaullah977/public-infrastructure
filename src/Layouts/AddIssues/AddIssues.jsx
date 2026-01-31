@@ -6,7 +6,7 @@ import useAuth from '../../Hooks/useAuth';
 
 const AddIssues = () => {
 
-  const {user} = useAuth();
+  const {user } = useAuth();
 
  console.log(user)
 
@@ -20,13 +20,14 @@ const AddIssues = () => {
       image: e.target.image.value,
       created_at: new Date(),
       booking: 0,
-      providerEmail: user.email.value,
+      providerEmail: user.email,
       location:e.target.location.value,
       repoted_by:e.target.reported_by.value,
       resolve_bugget:e.target.resolve_bugget.value,
 
     }   
      console.log(formData)
+    //  console.log(providerEmail)
 
      fetch(`http://localhost:3000/issues`, {
       method: "POST",
@@ -107,18 +108,6 @@ const AddIssues = () => {
           </div>
 
           <div>
-            <label className="label font-medium">Reported by </label>
-            <input
-              type="text"
-              name="reported_by"
-              required
-              className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
-              placeholder="Enter name"
-            />
-          </div>
-
-          
-          <div>
             <label className="label font-medium">Image URL</label>
             <input
               type="url"
@@ -129,6 +118,17 @@ const AddIssues = () => {
             />
           </div>
 
+          <div className='flex gap-4 flex-3'>
+            <div className='w-lg'>
+            <label className="label font-medium">Reported by </label>
+            <input
+              type="text"
+              name="reported_by"
+              required
+              className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
+              placeholder="Enter name"
+            />
+          </div>
           <div>
             <label className="label font-medium">Resolve Bugget</label>
             <input
@@ -136,7 +136,22 @@ const AddIssues = () => {
               name="resolve_bugget"
               required
               className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
-              placeholder="Enter name"
+              placeholder="Enter Amount"
+            />
+          </div>
+
+          </div>
+
+
+          <div>
+            <label className="label font-medium">Provider Email</label>
+            <input
+              type="email"
+              name="providerEmail"
+              required
+              className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
+              // placeholder={user?.email}
+              value={user?.email} readOnly
             />
           </div>
 

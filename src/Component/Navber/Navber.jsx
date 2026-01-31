@@ -33,6 +33,12 @@ const Navber = () => {
           <a>Add Issue</a>
         </NavLink>
       </li>
+      <li className="font-semibold">
+        <NavLink to="myissue">
+          <a>My Report</a>
+        </NavLink>
+      </li>
+      
     </>
   );
   return (
@@ -80,8 +86,8 @@ const Navber = () => {
           >
             <div className="w-10 rounded-full">
               <img
-                alt="Tailwind CSS Navbar component"
-                src={user?.photoURL}
+                alt=""
+                src={user?(user.photoURL):(<CgProfile/>)}
               />
             </div>
           </div>
@@ -98,18 +104,18 @@ const Navber = () => {
             <li>
               <a>Settings</a>
             </li>
-            <div className="navbar-end">
+            <li className=" hover:bg-gray-200">
               {user ? (
-                <button onClick={handleLogout} className="">
+                <a onClick={handleLogout} className="">
                   Log Out
-                </button>
+                </a>
               ) : (
                 <Link to="/login">
                   {" "}
                   <a className="">Log In</a>
                 </Link>
               )}
-            </div>
+            </li>
           </ul>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import useAuth from '../../Hooks/useAuth';
 import { Link } from 'react-router';
 import GoogleLogin from '../../Component/Login/googleLogin';
+import Swal from 'sweetalert2';
 
 const LogIn = () => {
 
@@ -15,6 +16,12 @@ const LogIn = () => {
     singInUser(data.email, data.password)
     .then(result => {
       console.log(result.user);
+      
+Swal.fire({
+  title: "Well Done!",
+  icon: "success",
+  draggable: true
+});
     })
     .catch(error => {
       console.log(error)

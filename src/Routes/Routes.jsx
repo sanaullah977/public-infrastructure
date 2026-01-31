@@ -10,11 +10,15 @@ import LogIn from "../Pages/Auth/LogIn";
 import Register from "../Pages/Auth/Register";
 import AuthLayout from "../Layouts/AuthLayout/AuthLayout";
 import IssueDetails from "../Layouts/AllIssues/IssueDetails";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import MyIssue from "../Component/MyIssues/MyIssue";
+import PrivateRouter from "./PrivateRouter";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component:RootLayouts,
+    errorElement:<ErrorPage/>,
     children:[
       {
         index:true,
@@ -28,15 +32,26 @@ export const router = createBrowserRouter([
       },
       {
         path:'addissues',
-        Component:AddIssues,
+        element:<PrivateRouter>
+          <AddIssues/>
+        </PrivateRouter>
         // 
       },
 
       {
         path:'issuedetails/:id',
-        Component:IssueDetails,
+        element:<PrivateRouter>
+          <IssueDetails/>
+        </PrivateRouter>,
         loader: ({params}) => fetch(`http://localhost:3000/issues/${params.id}`)  ,
       },
+
+      {
+        path:'myissue',
+       element:<PrivateRouter>
+          <MyIssue/>
+        </PrivateRouter>
+      }
 
     ]
   },
