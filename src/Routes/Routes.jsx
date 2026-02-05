@@ -43,7 +43,7 @@ export const router = createBrowserRouter([
         element:<PrivateRouter>
           <IssueDetails/>
         </PrivateRouter>,
-        loader: ({params}) => fetch(`http://localhost:3000/issues/${params.id}`)  ,
+        // loader: ({params}) => fetch(`http://localhost:3000/issues/${params.id}`)  ,
       },
 
       {

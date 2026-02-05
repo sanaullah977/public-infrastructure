@@ -1,16 +1,39 @@
-import React from 'react'
+import React, { use, useEffect, useState } from 'react'
 import { Link, useLoaderData, useNavigate, useParams } from 'react-router';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../Context/AuthContext';
 
 const IssueDetails = () => {
 
-    const issue = useLoaderData();
-  const { _id } = useParams();
-  const details = issue?.result;
-  console.log(issue);
+   const navigate = useNavigate();
+  const { id } = useParams();
+  const [issue, setIssue] = useState({});
+  const [loading, setLoading] = useState(true);
+  const { user } = use(AuthContext);
+  const [refetch, setRefecth] = useState(false);
+
+  //   const issue = useLoaderData();
+  // const { _id } = useParams();
+  // const details = issue?.result;
+  // console.log(issue);
+
+   useEffect(() => {
+    fetch(`http://localhost:3000/issues/${id}`, {
+      headers: {
+        authorization: `Bearer ${user.accessToken}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setIssue(data.result);
+        console.log(" Api called!")
+        console.log(data);
+        setLoading(false);
+      });
+  }, [user, id, refetch]);
 
 
-  const nevigate = useNavigate()
+  // const nevigate = useNavigate()
 
    const handleDelete = () => {
     Swal.fire({
@@ -33,7 +56,7 @@ const IssueDetails = () => {
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
-            nevigate("/allissues");
+           navigate("/allissues");
 
             Swal.fire({
               title: "Deleted!",
@@ -52,22 +75,22 @@ const IssueDetails = () => {
      <div className="bg-orange-100 rounded-3xl">
       <div className="items-center md:w-[1000px] w-[448px]   rounded-3xl p-10  my-10 justify-center mx-auto">
         <div className="flex md:flex-row flex-col mx-auto md:w-[1400px] w-[448px] p-5 gap-5 justify-center items-center m-5">
-          <img className="h-[300px] rounded-4xl shadow-md " src={details?.image} alt="" />
+          <img className="h-[300px] rounded-4xl shadow-md " src={issue?.image} alt="" />
           <div className=" flex flex-col">
             <div className=" md:w-[1020px] w-[448px] m-10 mb-5">
               <div className="flex items-center-safe gap-3">
-                <h2 className="font-bold text-4xl">{details?.title}</h2>
+                <h2 className="font-bold text-4xl">{issue?.title}</h2>
                 {/* <div className="flex  py-8 gap-1 items-center">
                   <img className="h-[20px]" src={star} alt="" />
-                  <span>{details?.rating}</span>
+                  <span>{issue?.rating}</span>
                 </div> */}
               </div>
               {/* <span className="text-gray-600 flex">
-                $<span className=" text-3xl"> {details?.resoleve_bugget}</span>
+                $<span className=" text-3xl"> {issue?.resoleve_bugget}</span>
               </span> */}
             </div>
             <div className="m-10 mb-5">
-              <p className=" text-gray-400 w-xl">{details?.description}</p>
+              <p className=" text-gray-400 w-xl">{issue?.description}</p>
             </div>
 
             <div className="flex   flex-col">
@@ -75,13 +98,13 @@ const IssueDetails = () => {
                 <div className="flex gap-1 items-center">
                   <span className="font-bold text-[18px]">Category : </span>
                   <span className="font-semibold text-gray-500">
-                    {details?.category}
+                    {issue?.category}
                   </span>
                 </div>
 
                 <div className="flex gap-1  items-center">
                   <span className="font-bold text-[18px]">
-                    Resolve Amount : {details?.resolve_bugget}$
+                    Resolve Amount : {issue?.resolve_bugget}$
                   </span>
                   <span className="font-semibold text-gray-500">
                     {}
@@ -91,10 +114,10 @@ const IssueDetails = () => {
               <div className="flex  items-center w-xl justify-between m-10 mb-5 ">
                 <div className="flex   flex-col">
                   <span className="text-gray-400">
-                    Provided By : {details?.repoted_by}
+                    Provided By : {issue?.repoted_by}
                   </span>
                   <span className="text-gray-400">
-                    Email: {details?.providerEmail}
+                    Email: {issue?.providerEmail}
                   </span>
                 </div>
 

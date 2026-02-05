@@ -16,7 +16,11 @@ const MyIssue = () => {
       return;
     }
 
-    fetch(`http://localhost:3000/issues?email=${user.email}`)
+    fetch(`http://localhost:3000/issues?email=${user.email}`,{
+     headers: {
+        authorization: `Bearer ${user.accessToken}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setIssues(data);

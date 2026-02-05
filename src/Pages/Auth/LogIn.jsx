@@ -11,6 +11,8 @@ const LogIn = () => {
    const { register, handleSubmit, formState: {errors} } = useForm();
   const {singInUser} = useAuth();
 
+  
+
   const handleLogin =(data) => {
     console.log('after Register', data);
     singInUser(data.email, data.password)
