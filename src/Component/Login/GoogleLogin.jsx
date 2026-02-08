@@ -4,10 +4,10 @@ import Swal from "sweetalert2";
 
 const GoogleLogin = () => {
 
-    const { singInGoogle } = useAuth();
+    const { signInGoogle } = useAuth();
 
     const handleGoogleSingin = () =>{
-        singInGoogle()
+        signInGoogle()
         .then(result => {
             console.log(result.user)
             
@@ -64,3 +64,6 @@ Swal.fire({
 };
 
 export default GoogleLogin;
+
+
+

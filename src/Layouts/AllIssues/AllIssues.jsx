@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ColorRing } from 'react-loader-spinner';
 import { Link, useLoaderData } from 'react-router';
+import LoadingSpinner from '../../Component/Dashboard/Common/LoadingSpinner';
 
 const AllIssues = () => {
   const [loading, setLoading] = useState(true);
@@ -15,15 +16,7 @@ const AllIssues = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-orange-50">
-        <ColorRing
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="color-ring-loading"
-          colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
-        />
-      </div>
+      <LoadingSpinner/>
     );
   }
 

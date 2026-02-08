@@ -3,7 +3,7 @@ import { Link, useLoaderData } from 'react-router';
 
 const LetestIssues = () => {
     const data = useLoaderData()
-   
+   console.log(data, 'data for letest ')
     const recentArray = (arr) => {
   return arr.sort(
     (a, b) => b._id.localeCompare(a._id)
@@ -11,6 +11,7 @@ const LetestIssues = () => {
 };
 
     const issuesView = recentArray(data).slice(0,6);
+    
   return (
     <div className='flex flex-col justify-center items-center rounded-2xl bg-orange-100 p-10'>
             

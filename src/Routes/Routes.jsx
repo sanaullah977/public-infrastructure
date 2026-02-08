@@ -1,8 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import Home from "../Layouts/Home/Home";
-
 import AddIssues from "../Layouts/AddIssues/AddIssues";
-
 import RootLayouts from "../Pages/RootsLayouts/RootLayouts";
 import AllIssues from "../Layouts/AllIssues/AllIssues";
 import AuthProvider from "../Context/AuthProvider";
@@ -13,75 +11,89 @@ import IssueDetails from "../Layouts/AllIssues/IssueDetails";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import MyIssue from "../Component/MyIssues/MyIssue";
 import PrivateRouter from "./PrivateRouter";
+import Profile from "../Component/Dashboard/Common/Profile";
+import DashboardLayout from "../Layouts/DashboardLayout/DashboardLayout";
+import AdminStatistics from "../Component/Dashboard/Sidebar/Statistics/AdminStatistics";
+import ManageUsers from "../Component/Dashboard/Admin/ManageUsers";
+import StaffeRequests from "../Component/Dashboard/Admin/StaffeRequests";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component:RootLayouts,
-    errorElement:<ErrorPage/>,
-    children:[
+    Component: RootLayouts,
+    errorElement: <ErrorPage />,
+    children: [
       {
-        index:true,
-        Component:Home,
-        loader: () => fetch(`http://localhost:3000/issues`)
+        index: true,
+        Component: Home,
+        loader: () => fetch(`http://localhost:3000/issues`),
       },
       {
-        path:'allissues',
-        Component:AllIssues,
-        loader: () => fetch(`http://localhost:3000/issues`)
+        path: "allissues",
+        Component: AllIssues,
+        loader: () => fetch(`http://localhost:3000/issues`),
       },
       {
-        path:'addissues',
-        element:<PrivateRouter>
-          <AddIssues/>
-        </PrivateRouter>
-        // 
+        path: "addissues",
+        element: (
+          <PrivateRouter>
+            <AddIssues />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "issuedetails/:id",
+        element: (
+          <PrivateRouter>
+            <IssueDetails />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "myissue",
+        element: (
+          <PrivateRouter>
+            <MyIssue />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "dashboard",
+        element: (
+          <PrivateRouter>
+            <DashboardLayout />
+          </PrivateRouter>
+        ),
+        children: [
+          {
+            index: true,
+            element: <AdminStatistics />,
+          },
+          {
+            path:'profile',
+            element:<PrivateRouter>
+              <Profile/>
+            </PrivateRouter>
+          },
+          {
+            path:'manage-users',
+            Component:ManageUsers,
+          },
+          {
+            path:'staffe-requests',
+            Component:StaffeRequests,
+          },
+        ],
       },
 
       {
-        path:'issuedetails/:id',
-        element:<PrivateRouter>
-          <IssueDetails/>
-        </PrivateRouter>,
-        // loader: ({params}) => fetch(`http://localhost:3000/issues/${params.id}`)  ,
+        path: "login",
+        Component: LogIn,
       },
-
       {
-        path:'myissue',
-       element:<PrivateRouter>
-          <MyIssue/>
-        </PrivateRouter>
-      }
-
-    ]
+        path: "register",
+        Component: Register,
+      },
+    ],
   },
-  
-
- 
-  {
-    
-    path:'/',
-    Component:AuthLayout,
-    children:[
-      {
-        
-        path:'login',
-        Component:LogIn,
-      },
-
-      {
-        path:'register',
-        Component:Register,
-      }
-    ]
-
-  }
-
-  
-
-  
-    
-  
-
-  
 ]);

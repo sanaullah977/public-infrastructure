@@ -5,8 +5,8 @@ import useAuth from "../../Hooks/useAuth";
 import { CgProfile } from "react-icons/cg";
 
 const Navber = () => {
-  const { user, setUser, logout } = useAuth();
-  console.log(user);
+  const { user, setUser, logout, role } = useAuth();
+  console.log(user,role);
 
   const handleLogout = () => {
     logout()
@@ -95,15 +95,20 @@ const Navber = () => {
             tabIndex="-1"
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
+            <Link to='/dashboard/profile'>
             <li>
               <a className="justify-between">
                 Profile
                 <span className="badge">New</span>
               </a>
             </li>
+            
+            </Link>
+           <Link to='/dashboard'>
             <li>
-              <a>Settings</a>
+              <a>Dashboard</a>
             </li>
+           </Link>
             <li className=" hover:bg-gray-200">
               {user ? (
                 <a onClick={handleLogout} className="">

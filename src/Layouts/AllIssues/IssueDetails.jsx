@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from 'react'
 import { Link, useLoaderData, useNavigate, useParams } from 'react-router';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Context/AuthContext';
+import PaymentModal from '../../Component/Model/PaymentModal';
 
 const IssueDetails = () => {
 
@@ -9,6 +10,7 @@ const IssueDetails = () => {
   const { id } = useParams();
   const [issue, setIssue] = useState({});
   const [loading, setLoading] = useState(true);
+  const [isOpen , setIsOpen] = useState(false)
   const { user } = use(AuthContext);
   const [refetch, setRefecth] = useState(false);
 
@@ -31,6 +33,10 @@ const IssueDetails = () => {
         setLoading(false);
       });
   }, [user, id, refetch]);
+
+  const closeModal = () => {
+    setIsOpen(false)
+  }
 
 
   // const nevigate = useNavigate()
@@ -123,11 +129,16 @@ const IssueDetails = () => {
 
                 <Link to={''}>
                 <button
-                //   onClick={handleClick}
+                onClick={() => setIsOpen(true)}
                   className="btn bg-amber-400  text-white"
                 >
-                 Book now
+                 pay
                 </button>
+                <PaymentModal
+            Issue={issue}
+            closeModal={closeModal}
+            isOpen={isOpen}
+          />
                 </Link>
               </div>
 
@@ -135,10 +146,15 @@ const IssueDetails = () => {
                {/* <Link to={`/updatadb/${_id}`}> */}
                <button className="btn bg-amber-400 ml-10 mx-auto text-white"> Update </button>
                {/* </Link> */}
+               {/* <hr className='my-6' /> */}
+               
                 <button 
                 onClick={handleDelete} 
                 className="btn bg-amber-400 ml-10 mx-auto text-white"> Resolve </button>
+
+                
              </div>
+             
             </div>
           </div>
         </div>
