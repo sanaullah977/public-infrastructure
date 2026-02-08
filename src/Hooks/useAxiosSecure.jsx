@@ -27,17 +27,18 @@ const useAxiosSecure = () => {
       // Add response interceptor
       const responseInterceptor = axiosInstance.interceptors.response.use(
         res => res,
-        err => {
-          if (err?.response?.status === 401 || err?.response?.status === 403) {
-            logOut()
-              .then(() => {
-                console.log('Logged out successfully.')
-              })
-              .catch(console.error)
-            navigate('/login')
-          }
-          return Promise.reject(err)
-        }
+        err => err
+        // err => {
+        //   if (err?.response?.status === 401 || err?.response?.status === 403) {
+        //     logOut()
+        //       .then(() => {
+        //         console.log('Logged out successfully.')
+        //       })
+        //       .catch(console.error)
+        //     navigate('/login')
+        //   }
+        //   return Promise.reject(err)
+        // }
       )
 
       // Cleanup to prevent multiple interceptors on re-renders

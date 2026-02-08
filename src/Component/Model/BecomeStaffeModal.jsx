@@ -1,8 +1,9 @@
 import { Dialog, DialogTitle, DialogPanel } from '@headlessui/react'
-// import { Dialog } from '@headlessui/react'
-import useAxiosSecure from '../../Hooks/useAxiosSecure'
+
+
 import toast from 'react-hot-toast'
-const BecomeSellerModal = ({ closeModal, isOpen }) => {
+import useAxiosSecure from '../../Hooks/useAxiosSecure'
+const BecomeStaffeModal = ({ closeModal, isOpen }) => {
   const axiosSecure = useAxiosSecure()
 
   const handleRequest = async () => {
@@ -65,4 +66,4 @@ const BecomeSellerModal = ({ closeModal, isOpen }) => {
   )
 }
 
-export default BecomeSellerModal
+export default BecomeStaffeModal

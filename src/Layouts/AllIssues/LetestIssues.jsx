@@ -37,7 +37,24 @@ const LetestIssues = () => {
          </h2>
          <div className="card-actions justify-between">
            <div className="badge badge-outline border-dashed text-orange-600 bg-orange-100">{product.category}</div>
+           {product.status && (
+                      <div
+                        className={`px-3 py-1 text-sm font-medium rounded-full ${
+                          product.status === 'Pending'
+                            ? 'bg-yellow-100 text-yellow-800'
+                            : product.status === 'In Progress'
+                            ? 'bg-blue-100 text-blue-800'
+                            : product.status === 'Resolved'
+                            ? 'bg-green-100 text-green-800'
+                            : 'bg-gray-100 text-gray-700'
+                        }`}
+                      >
+                        {product.status}
+                      </div>
+                    )}
+
          </div>
+         
          <h2 className="">
            {product.location.address}
          </h2>

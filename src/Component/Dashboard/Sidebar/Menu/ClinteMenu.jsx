@@ -3,7 +3,7 @@ import { GrUserAdmin } from 'react-icons/gr'
 import MenuItem from './MenuItem'
 import { useState } from 'react'
 import { BsFillHouseAddFill } from 'react-icons/bs'
-import BecomeSellerModal from '../../../Model/BecomeSellerModal'
+import BecomeSellerModal from '../../../Model/BecomeStaffeModal'
 import { MdHomeWork } from 'react-icons/md'
 const ClinteMenu = () => {
   const [isOpen, setIsOpen] = useState(false)

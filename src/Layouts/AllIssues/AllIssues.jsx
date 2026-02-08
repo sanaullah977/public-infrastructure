@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ColorRing } from 'react-loader-spinner';
-import { Link, useLoaderData } from 'react-router';
+import { useLoaderData, Link } from 'react-router';
 import LoadingSpinner from '../../Component/Dashboard/Common/LoadingSpinner';
 
 const AllIssues = () => {
@@ -15,9 +14,7 @@ const AllIssues = () => {
   }, [data]);
 
   if (loading) {
-    return (
-      <LoadingSpinner/>
-    );
+    return <LoadingSpinner />;
   }
 
   // category filter logic
@@ -34,17 +31,16 @@ const AllIssues = () => {
           All Issues ({filteredData.length})
         </h1>
 
-        
+        {/* Category Buttons */}
         <div className="flex flex-wrap justify-center gap-3 mb-10">
           {["All", "Road Damage", "Broken Public Property", "Garbage", "Electric Issue", "Illigal Construction"].map(cat => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition
-                ${
-                  selectedCategory === cat
-                    ? "bg-orange-500 text-white"
-                    : "bg-white text-gray-700 border border-gray-300 hover:bg-orange-50"
+                ${selectedCategory === cat
+                  ? "bg-orange-500 text-white"
+                  : "bg-white text-gray-700 border border-gray-300 hover:bg-orange-50"
                 }`}
             >
               {cat}
@@ -79,10 +75,29 @@ const AllIssues = () => {
                   </p>
 
                   <div className="flex flex-wrap items-center justify-between gap-2 mt-auto pt-3 border-t border-gray-100">
+                    {/* Category Badge */}
                     <div className="badge badge-outline text-orange-600 bg-orange-50 px-3 py-1 text-sm font-medium">
                       {product.category}
                     </div>
 
+                    {/* Status Badge */}
+                    {product.status && (
+                      <div
+                        className={`px-3 py-1 text-sm font-medium rounded-full ${
+                          product.status === 'Pending'
+                            ? 'bg-yellow-100 text-yellow-800'
+                            : product.status === 'In Progress'
+                            ? 'bg-blue-100 text-blue-800'
+                            : product.status === 'Resolved'
+                            ? 'bg-green-100 text-green-800'
+                            : 'bg-gray-100 text-gray-700'
+                        }`}
+                      >
+                        {product.status}
+                      </div>
+                    )}
+
+                    {/* Location */}
                     {product.location?.address && (
                       <div className="text-sm text-gray-500 line-clamp-1 max-w-[60%] text-right">
                         {product.location.address}

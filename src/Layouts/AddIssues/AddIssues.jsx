@@ -24,6 +24,7 @@ const AddIssues = () => {
       location:e.target.location.value,
       repoted_by:e.target.reported_by.value,
       resolve_bugget:e.target.resolve_bugget.value,
+      status: "Pending",
 
     }   
      console.log(formData)

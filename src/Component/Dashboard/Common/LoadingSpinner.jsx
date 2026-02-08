@@ -10,7 +10,7 @@ const LoadingSpinner = ({ smallHeight }) => {
       justify-center 
       items-center `}
     >
-      <ColorRing size={100} color='lime' />
+      <ColorRing size={100} color='orange' />
     </div>
   )
 }
