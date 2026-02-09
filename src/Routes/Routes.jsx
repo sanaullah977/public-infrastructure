@@ -16,6 +16,9 @@ import DashboardLayout from "../Layouts/DashboardLayout/DashboardLayout";
 import AdminStatistics from "../Component/Dashboard/Sidebar/Statistics/AdminStatistics";
 import ManageUsers from "../Component/Dashboard/Admin/ManageUsers";
 import StaffeRequests from "../Component/Dashboard/Admin/StaffeRequests";
+// import Payment from "../Component/Payment/Payment";
+import PaymentHistory from "../Component/Payment/PaymentHistory";
+import PaymentSuccess from "../Component/Payment/PaymentSuccess";
 
 export const router = createBrowserRouter([
   {
@@ -87,6 +90,17 @@ export const router = createBrowserRouter([
       },
 
       {
+        path:'/payment',
+        Component:PaymentSuccess,
+      },
+
+      {
+        path:'/paymenthistory',
+        Component:PaymentHistory,
+        // loader: () => fetch(`http://localhost:3000/issues/:id`)
+      },
+
+      {
         path: "login",
         Component: LogIn,
       },
@@ -95,5 +109,7 @@ export const router = createBrowserRouter([
         Component: Register,
       },
     ],
+
+    
   },
 ]);

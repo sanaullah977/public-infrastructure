@@ -53,7 +53,7 @@ const IssueDetails = () => {
     })
     .then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/issues/${details?._id}`, {
+        fetch(`http://localhost:3000/issues/${issue?._id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -135,7 +135,7 @@ const IssueDetails = () => {
                  pay
                 </button>
                 <PaymentModal
-            Issue={issue}
+            issue={issue}
             closeModal={closeModal}
             isOpen={isOpen}
           />

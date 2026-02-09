@@ -1,17 +1,17 @@
-import axios from 'axios'
-import React, { useEffect } from 'react'
+// import axios from 'axios'
+// import React, { useEffect } from 'react'
 import { Link, useSearchParams } from 'react-router'
 import { IoBagCheckOutline } from 'react-icons/io5'
 const PaymentSuccess = () => {
-  const [searchParams] = useSearchParams()
-  const sessionId = searchParams.get('session_id')
-  useEffect(() => {
-    if (sessionId) {
-      axios.post(`${import.meta.env.VITE_API_URL}/payment-success`, {
-        sessionId,
-      })
-    }
-  }, [sessionId])
+  // const [searchParams] = useSearchParams()
+  // const sessionId = searchParams.get('session_id')
+  // useEffect(() => {
+  //   if (sessionId) {
+  //     axios.post(`${import.meta.env.VITE_API_URL}/payment-success`, {
+  //       sessionId,
+  //     })
+  //   }
+  // }, [sessionId])
   return (
     <div className='flex flex-col items-center justify-center'>
       <div className='bg-white p-10 rounded-lg shadow-lg text-center'>
