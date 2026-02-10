@@ -1,19 +1,20 @@
-// import { useQuery } from '@tanstack/react-query';
-// import React from 'react';
-// import useAuth from '../../../hooks/useAuth';
-// import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
+import React from 'react';
+import useAuth from '../../Hooks/useAuth';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+
 
 const PaymentHistory = () => {
-    // const { user } = useAuth();
-    // const axiosSecure = useAxiosSecure();
+    const { user } = useAuth();
+    const axiosSecure = useAxiosSecure();
 
-    // const { data: payments = [] } = useQuery({
-    //     queryKey: ['payments', user.email],
-    //     queryFn: async () => {
-    //         const res = await axiosSecure.get(`/payments?email=${user.email}`)
-    //         return res.data;
-    //     }
-    // })
+    const { data: payments = [] } = useQuery({
+        queryKey: ['payments', user.email],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/payments?email=${user.email}`)
+            return res.data;
+        }
+    })
 
     return (
         <div>
@@ -33,7 +34,7 @@ const PaymentHistory = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {
+                        {
                             payments.map((payment, index) => <tr key={payment._id}>
                                 <th>{index + 1}</th>
                                 <td>Cy Ganderton</td>
@@ -41,7 +42,7 @@ const PaymentHistory = () => {
                                 <td>{payment.paidAt}</td>
                                 <td>{payment.transactionId}</td>
                             </tr>)
-                        } */}
+                        }
 
 
                     </tbody>

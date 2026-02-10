@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useLoaderData, Link } from 'react-router';
-import LoadingSpinner from '../../Component/Dashboard/Common/LoadingSpinner';
+import React, { useEffect, useState } from "react";
+import { useLoaderData, Link } from "react-router";
+import LoadingSpinner from "../../Component/Dashboard/Common/LoadingSpinner";
 
 const AllIssues = () => {
   const [loading, setLoading] = useState(true);
@@ -21,26 +21,33 @@ const AllIssues = () => {
   const filteredData =
     selectedCategory === "All"
       ? data
-      : data.filter(issue => issue.category === selectedCategory);
+      : data.filter((issue) => issue.category === selectedCategory);
 
   return (
     <div className="min-h-screen bg-orange-50/70 px-4 py-8 md:px-8 lg:px-12">
       <div className="max-w-7xl mx-auto">
-
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6 text-gray-800">
           All Issues ({filteredData.length})
         </h1>
 
         {/* Category Buttons */}
         <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {["All", "Road Damage", "Broken Public Property", "Garbage", "Electric Issue", "Illigal Construction"].map(cat => (
+          {[
+            "All",
+            "Road Damage",
+            "Broken Public Property",
+            "Garbage",
+            "Electric Issue",
+            "Illigal Construction",
+          ].map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition
-                ${selectedCategory === cat
-                  ? "bg-orange-500 text-white"
-                  : "bg-white text-gray-700 border border-gray-300 hover:bg-orange-50"
+                ${
+                  selectedCategory === cat
+                    ? "bg-orange-500 text-white"
+                    : "bg-white text-gray-700 border border-gray-300 hover:bg-orange-50"
                 }`}
             >
               {cat}
@@ -61,7 +68,7 @@ const AllIssues = () => {
                   <img
                     className="object-contain w-full h-full max-h-40 md:max-h-48 transition-transform duration-500 group-hover:scale-105"
                     src={product.image}
-                    alt={product.title || 'Issue image'}
+                    alt={product.title || "Issue image"}
                   />
                 </figure>
 
@@ -84,13 +91,13 @@ const AllIssues = () => {
                     {product.status && (
                       <div
                         className={`px-3 py-1 text-sm font-medium rounded-full ${
-                          product.status === 'Pending'
-                            ? 'bg-yellow-100 text-yellow-800'
-                            : product.status === 'In Progress'
-                            ? 'bg-blue-100 text-blue-800'
-                            : product.status === 'Resolved'
-                            ? 'bg-green-100 text-green-800'
-                            : 'bg-gray-100 text-gray-700'
+                          product.status === "Pending"
+                            ? "bg-yellow-100 text-yellow-800"
+                            : product.status === "In Progress"
+                            ? "bg-blue-100 text-blue-800"
+                            : product.status === "Resolved"
+                            ? "bg-green-100 text-green-800"
+                            : "bg-gray-100 text-gray-700"
                         }`}
                       >
                         {product.status}

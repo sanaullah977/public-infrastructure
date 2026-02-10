@@ -1,16 +1,15 @@
-import React, { use, useEffect, useState } from 'react'
-import { Link, useLoaderData, useNavigate, useParams } from 'react-router';
-import Swal from 'sweetalert2';
-import { AuthContext } from '../../Context/AuthContext';
-import PaymentModal from '../../Component/Model/PaymentModal';
+import React, { use, useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../Context/AuthContext";
+import PaymentModal from "../../Component/Model/PaymentModal";
 
 const IssueDetails = () => {
-
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   const { id } = useParams();
   const [issue, setIssue] = useState({});
   const [loading, setLoading] = useState(true);
-  const [isOpen , setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   const { user } = use(AuthContext);
   const [refetch, setRefecth] = useState(false);
 
@@ -19,29 +18,31 @@ const IssueDetails = () => {
   // const details = issue?.result;
   // console.log(issue);
 
-   useEffect(() => {
-    fetch(`http://localhost:3000/issues/${id}`, {
-      headers: {
-        authorization: `Bearer ${user.accessToken}`,
+  useEffect(() => {
+    fetch(
+      `https://public-infrastructure-system-server.vercel.app/issues/${id}`,
+      {
+        headers: {
+          authorization: `Bearer ${user.accessToken}`,
+        },
       },
-    })
+    )
       .then((res) => res.json())
       .then((data) => {
         setIssue(data.result);
-        console.log(" Api called!")
+        console.log(" Api called!");
         console.log(data);
         setLoading(false);
       });
   }, [user, id, refetch]);
 
   const closeModal = () => {
-    setIsOpen(false)
-  }
-
+    setIsOpen(false);
+  };
 
   // const nevigate = useNavigate()
 
-   const handleDelete = () => {
+  const handleDelete = () => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -50,19 +51,21 @@ const IssueDetails = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    })
-    .then((result) => {
+    }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/issues/${issue?._id}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
+        fetch(
+          `https://public-infrastructure-system-server.vercel.app/issues/${issue?._id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
           },
-        })
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
-           navigate("/allissues");
+            navigate("/allissues");
 
             Swal.fire({
               title: "Deleted!",
@@ -78,10 +81,14 @@ const IssueDetails = () => {
   };
 
   return (
-     <div className="bg-orange-100 rounded-3xl">
+    <div className="bg-orange-100 rounded-3xl">
       <div className="items-center md:w-[1000px] w-[448px]   rounded-3xl p-10  my-10 justify-center mx-auto">
         <div className="flex md:flex-row flex-col mx-auto md:w-[1400px] w-[448px] p-5 gap-5 justify-center items-center m-5">
-          <img className="h-[300px] rounded-4xl shadow-md " src={issue?.image} alt="" />
+          <img
+            className="h-[300px] rounded-4xl shadow-md "
+            src={issue?.image}
+            alt=""
+          />
           <div className=" flex flex-col">
             <div className=" md:w-[1020px] w-[448px] m-10 mb-5">
               <div className="flex items-center-safe gap-3">
@@ -112,9 +119,7 @@ const IssueDetails = () => {
                   <span className="font-bold text-[18px]">
                     Resolve Amount : {issue?.resolve_bugget}$
                   </span>
-                  <span className="font-semibold text-gray-500">
-                    {}
-                  </span>
+                  <span className="font-semibold text-gray-500">{}</span>
                 </div>
               </div>
               <div className="flex  items-center w-xl justify-between m-10 mb-5 ">
@@ -127,41 +132,44 @@ const IssueDetails = () => {
                   </span>
                 </div>
 
-                <Link to={''}>
-                <button
-                onClick={() => setIsOpen(true)}
-                  className="btn bg-amber-400  text-white"
-                >
-                 pay
-                </button>
-                <PaymentModal
-            issue={issue}
-            closeModal={closeModal}
-            isOpen={isOpen}
-          />
+                <Link to={""}>
+                  <button
+                    onClick={() => setIsOpen(true)}
+                    className="btn bg-amber-400  text-white"
+                  >
+                    pay
+                  </button>
+                  <PaymentModal
+                    issue={issue}
+                    closeModal={closeModal}
+                    isOpen={isOpen}
+                  />
                 </Link>
               </div>
 
-             <div>
-               {/* <Link to={`/updatadb/${_id}`}> */}
-               <button className="btn bg-amber-400 ml-10 mx-auto text-white"> Update </button>
-               {/* </Link> */}
-               {/* <hr className='my-6' /> */}
-               
-                <button 
-                onClick={handleDelete} 
-                className="btn bg-amber-400 ml-10 mx-auto text-white"> Resolve </button>
+              <div>
+                {/* <Link to={`/updatadb/${_id}`}> */}
+                <button className="btn bg-amber-400 ml-10 mx-auto text-white">
+                  {" "}
+                  Update{" "}
+                </button>
+                {/* </Link> */}
+                {/* <hr className='my-6' /> */}
 
-                
-             </div>
-             
+                <button
+                  onClick={handleDelete}
+                  className="btn bg-amber-400 ml-10 mx-auto text-white"
+                >
+                  {" "}
+                  Resolve{" "}
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      
     </div>
   );
 };
 
-export default IssueDetails
+export default IssueDetails;

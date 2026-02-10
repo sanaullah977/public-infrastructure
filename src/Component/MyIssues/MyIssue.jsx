@@ -16,7 +16,7 @@ const MyIssue = () => {
       return;
     }
 
-    fetch(`http://localhost:3000/issues?email=${user.email}`,{
+    fetch(`https://public-infrastructure-system-server.vercel.app/issues?email=${user.email}`,{
      headers: {
         authorization: `Bearer ${user.accessToken}`,
       },

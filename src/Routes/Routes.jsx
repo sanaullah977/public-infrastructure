@@ -29,12 +29,12 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        loader: () => fetch(`http://localhost:3000/issues`),
+        loader: () => fetch(`https://public-infrastructure-system-server.vercel.app/issues`),
       },
       {
         path: "allissues",
         Component: AllIssues,
-        loader: () => fetch(`http://localhost:3000/issues`),
+        loader: () => fetch(`https://public-infrastructure-system-server.vercel.app/issues`),
       },
       {
         path: "addissues",
@@ -97,7 +97,7 @@ export const router = createBrowserRouter([
       {
         path:'/paymenthistory',
         Component:PaymentHistory,
-        // loader: () => fetch(`http://localhost:3000/issues/:id`)
+        
       },
 
       {

@@ -1,5 +1,5 @@
-import React, { use } from 'react'
-import { AuthContext } from '../../Context/AuthContext';
+// import React, { use } from 'react'
+// import { AuthContext } from '../../Context/AuthContext';
 import useAuth from '../../Hooks/useAuth';
 
  
@@ -30,7 +30,7 @@ const AddIssues = () => {
      console.log(formData)
     //  console.log(providerEmail)
 
-     fetch(`http://localhost:3000/issues`, {
+     fetch(`https://public-infrastructure-system-server.vercel.app/issues`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
