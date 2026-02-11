@@ -1,12 +1,21 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useAuth from '../../Hooks/useAuth';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import { useLoaderData } from 'react-router';
 
 
 const PaymentHistory = () => {
     const { user } = useAuth();
+    const payment = useLoaderData();
+    const [loading, setLoading] = useState(true);
     const axiosSecure = useAxiosSecure();
+
+    useEffect(() => {
+        if (payment) {
+          setLoading(false);
+        }
+      }, [payment]);
 
     const { data: payments = [] } = useQuery({
         queryKey: ['payments', user.email],
@@ -27,20 +36,24 @@ const PaymentHistory = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Name</th>
+                            <th>Contributor</th>
+                            <th>Title</th>
                             <th>Amount</th>
+                            <th>Location</th>
                             <th>Paid Time</th>
-                            <th>Transaction Id</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            payments.map((payment, index) => <tr key={payment._id}>
+                            payment.map((payment, index) => <tr key={payment._id}>
                                 <th>{index + 1}</th>
-                                <td>Cy Ganderton</td>
-                                <td>${payment.amount}</td>
-                                <td>{payment.paidAt}</td>
-                                <td>{payment.transactionId}</td>
+                                <td className='flex items-center gap-2 '><img className='size-8 rounded-lg' src={payment.clinte.image} alt="user Image" />{payment.clinte.name}</td>
+                                <td>{payment.title}</td>
+                                <td>${payment.donete_amount}</td>
+                                 <td>{payment.location}</td>
+                                <td>{payment.created_at}</td>
+                               
                             </tr>)
                         }
 

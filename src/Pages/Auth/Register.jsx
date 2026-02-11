@@ -1,13 +1,13 @@
-import React from 'react'
-import sing from '../../assets/singin.jpg.png'
+// import React from 'react'
+// import sing from '../../assets/singin.jpg.png'
 import { useForm } from 'react-hook-form';
 import useAuth from '../../Hooks/useAuth';
 import { Link, useLocation, useNavigate } from 'react-router';
-import GoogleLogin from '../../Component/Login/googleLogin';
-import Swal from 'sweetalert2';
+// import GoogleLogin from '../../Component/Login/googleLogin';
+// import Swal from 'sweetalert2';
 import { FcGoogle } from "react-icons/fc";
 import { toast } from 'react-toastify';
-import { signInWithPopup } from 'firebase/auth';
+// import { signInWithPopup } from 'firebase/auth';
 import { PiGearFineDuotone } from "react-icons/pi";
 import { imageUpload, saveOrUpdateUser } from '../../Utiliti/User';
 

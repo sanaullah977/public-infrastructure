@@ -95,8 +95,9 @@ export const router = createBrowserRouter([
       },
 
       {
-        path:'/paymenthistory',
+        path:'/payment-history',
         Component:PaymentHistory,
+         loader: () => fetch(`https://public-infrastructure-system-server.vercel.app/payment`),
         
       },
 

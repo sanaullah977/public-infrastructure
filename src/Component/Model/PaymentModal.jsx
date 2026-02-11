@@ -4,7 +4,7 @@ import useAuth from "../../Hooks/useAuth";
 
 const PaymentModal = ({ closeModal, isOpen, issue }) => {
   const { user } = useAuth();
-  const { id, category, title } = issue || {};
+  const { id, category, title, location } = issue || {};
 
   const handlePayment = async (e) => {
     e.preventDefault();
@@ -13,6 +13,8 @@ const PaymentModal = ({ closeModal, isOpen, issue }) => {
       title,
       name: e.target.name.value,
       category,
+      location: e.target.location.value,
+      created_at: new Date(),
       donete_amount: e.target.donete_amount.value,
       payByEmail: user.email,
 
@@ -119,7 +121,7 @@ const PaymentModal = ({ closeModal, isOpen, issue }) => {
                   </div>
 
                   <div>
-                    <label className="label font-medium">Provider Email</label>
+                    <label className="label font-medium"> Email</label>
                     <input
                       type="email"
                       name="payByEmail"

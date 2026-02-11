@@ -6,7 +6,7 @@ const AdminMenu = () => {
   return (
     <>
       <MenuItem icon={FaUserCog} label='Manage Users' address='manage-users' />
-      <MenuItem icon={BsFingerprint} label='Payment History' address='payment-history' />
+      <MenuItem icon={BsFingerprint} label='Payment History' address='/payment-history' />
       <MenuItem
         icon={FaUserTag}
         label='Staffe Requests'
