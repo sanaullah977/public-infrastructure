@@ -19,6 +19,7 @@ import StaffeRequests from "../Component/Dashboard/Admin/StaffeRequests";
 // import Payment from "../Component/Payment/Payment";
 import PaymentHistory from "../Component/Payment/PaymentHistory";
 import PaymentSuccess from "../Component/Payment/PaymentSuccess";
+import MyPayment from "../Component/Payment/MyPayment";
 
 export const router = createBrowserRouter([
   {
@@ -29,12 +30,18 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        loader: () => fetch(`https://public-infrastructure-system-server.vercel.app/issues`),
+        loader: () =>
+          fetch(
+            `https://public-infrastructure-system-server.vercel.app/issues`,
+          ),
       },
       {
         path: "allissues",
         Component: AllIssues,
-        loader: () => fetch(`https://public-infrastructure-system-server.vercel.app/issues`),
+        loader: () =>
+          fetch(
+            `https://public-infrastructure-system-server.vercel.app/issues`,
+          ),
       },
       {
         path: "addissues",
@@ -52,6 +59,20 @@ export const router = createBrowserRouter([
           </PrivateRouter>
         ),
       },
+
+      {
+        path: "my-payment",
+        element:(
+          <PrivateRouter>
+            <MyPayment/>
+          </PrivateRouter>
+        ),
+      //  loader: () =>
+      //     fetch(
+      //       `https://public-infrastructure-system-server.vercel.app/payment`,
+      //     ),
+      },
+
       {
         path: "myissue",
         element: (
@@ -73,32 +94,37 @@ export const router = createBrowserRouter([
             element: <AdminStatistics />,
           },
           {
-            path:'profile',
-            element:<PrivateRouter>
-              <Profile/>
-            </PrivateRouter>
+            path: "profile",
+            element: (
+              <PrivateRouter>
+                <Profile />
+              </PrivateRouter>
+            ),
+          },
+
+          {
+            path: "payment-history",
+            Component: PaymentHistory,
+            loader: () =>
+              fetch(
+                `https://public-infrastructure-system-server.vercel.app/payment`,
+              ),
+          },
+
+          {
+            path: "manage-users",
+            Component: ManageUsers,
           },
           {
-            path:'manage-users',
-            Component:ManageUsers,
-          },
-          {
-            path:'staffe-requests',
-            Component:StaffeRequests,
+            path: "staffe-requests",
+            Component: StaffeRequests,
           },
         ],
       },
 
       {
-        path:'/payment',
-        Component:PaymentSuccess,
-      },
-
-      {
-        path:'/payment-history',
-        Component:PaymentHistory,
-         loader: () => fetch(`https://public-infrastructure-system-server.vercel.app/payment`),
-        
+        path: "/payment",
+        Component: PaymentSuccess,
       },
 
       {
@@ -110,7 +136,5 @@ export const router = createBrowserRouter([
         Component: Register,
       },
     ],
-
-    
   },
 ]);

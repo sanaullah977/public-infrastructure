@@ -18,6 +18,7 @@ import MenuItem from './Menu/MenuItem'
 import ClinteMenu from './Menu/ClinteMenu'
 import StaffeMenu from './Menu/StaffeMenu'
 import AdminMenu from './Menu/AdminMenu'
+import LoadingSpinner from '../Common/LoadingSpinner'
 
 const Sidebar = () => {
   const { logout } = useAuth()
@@ -39,7 +40,7 @@ const Sidebar = () => {
   }
 
   if (isRoleLoading) return 
-  //<LoadingSpinner />
+  <LoadingSpinner />
 
   return (
     <>
@@ -71,7 +72,7 @@ const Sidebar = () => {
           
           <div>
          
-            <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-lime-100 mx-auto'>
+            <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-orange-100 mx-auto'>
               <Link to='/'>
                 <img src={logo} alt='logo' width='100' height='100' />
               </Link>

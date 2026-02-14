@@ -13,10 +13,10 @@ const Home = () => {
       
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Banner - full width */}
+      
         <Banner />
 
-        {/* Features / Benefits section */}
+  
         <section className="py-10 md:py-16">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
@@ -60,20 +60,12 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Coverage section */}
-        <section className="py-10 md:py-16">
-          <Covarage />
-        </section>
-
-        {/* Latest Issues */}
+        
         <section className="py-10 md:py-16">
           <LetestIssues />
         </section>
 
-        {/* Optional: All Issues section if you want to show more */}
-        {/* <section className="py-10 md:py-16">
-          <AllIssues />
-        </section> */}
+       
       </main>
 
       

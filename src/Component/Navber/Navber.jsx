@@ -38,6 +38,11 @@ const Navber = () => {
           <a>My Report</a>
         </NavLink>
       </li>
+      <li className="font-semibold">
+        <NavLink to="my-payment">
+          <a>My Payment</a>
+        </NavLink>
+      </li>
       
     </>
   );
