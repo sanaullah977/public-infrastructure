@@ -79,14 +79,14 @@ const MyPayment = () => {
                 {p.ratingAvg}
               </span>
               <span>
-                {p.size}
-                MB</span>
+                {p.donete_amount}
+                $</span>
             </div>
           </div>
         </div>
         <button
         //  onClick={ () => handleRemove (p.id) }
-          className="btn bg-green-400 mr-3 text-white">Uninstall</button>
+          className="btn bg-orange-400 mr-3 text-white">Delete</button>
         
         </div>
           )
