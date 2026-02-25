@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
+import LoadingSpinner from '../Dashboard/Common/LoadingSpinner';
 
 const MyPayment = () => {
 
@@ -34,67 +35,63 @@ const MyPayment = () => {
           setLoading(false);
         });
     }, [user?.email]);
-    return (
-        <div className="flex flex-col justify-center items-center h-full bg-gray-100 p-10">
-      <h2 className="text-4xl font-bold p-3">My Payments({payment.length})</h2>
-      
-      <div className="flex justify-between w-[1400px] items-center">
-        <h3 className="text-2xl font-bold">
-            
-             Payment List</h3>
-        <select value='none' 
-        // onChange={e=> setList(e.target.value)}
-        >
-            <option value="none">Sort by Price</option>
-            <option value="price-asc">Low-High</option>
-            <option value="price-desc">High-Low</option>
-          </select>
-      </div>
-      
 
-        {
-          payment.map(p =>(
-          <div
-           kay={p.id} 
-           className="flex justify-between w-[1400px] bg-white rounded-2xl items-center my-2">
-            <div className="flex items-center gap-3 p-5">
-          <img className="h-12 rounded-b-lg " src=
-          {p.clinte.image} 
-          alt="" />
-          <div>
-            <h4>
-                {p.title}
-                </h4>
-            <div className="flex gap-3">
-              <span className="flex gap-1">
-                <img className="h-5 " src=''
-                // {arrow} 
-                alt="" />
-                {p.downloads}
-              </span>
-              <span className="flex gap-1">
-                <img className="h-5 " src=""
-                // {tara} 
-                alt="" />
-                {p.ratingAvg}
-              </span>
-              <span>
-                {p.donete_amount}
-                $</span>
-            </div>
-          </div>
-        </div>
-        <button
-        //  onClick={ () => handleRemove (p.id) }
-          className="btn bg-orange-400 mr-3 text-white">Delete</button>
-        
-        </div>
-          )
-            
-          )
-        }
-        
-      
+     if (loading) return 
+  <LoadingSpinner />
+
+    
+    return (
+        <div className="px-4 sm:px-6 lg:px-10 py-6">
+      {/* Title */}
+      <h2 className="text-2xl sm:text-3xl font-semibold text-center my-6">
+        Payment History: ({payment.length})
+      </h2>
+
+      {/* Table Container */}
+      <div className="overflow-x-auto rounded-xl shadow-md">
+        <table className="table table-zebra w-full text-sm sm:text-base">
+          {/* Head */}
+          <thead className="bg-base-200">
+            <tr>
+              <th>#</th>
+              <th>Contributor</th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Amount</th>
+              <th>Location</th>
+              <th>Paid Time</th>
+            </tr>
+          </thead>
+
+          {/* Body */}
+          <tbody>
+            {payment.map((payment, index) => (
+              <tr key={payment._id}>
+                <th>{index + 1}</th>
+
+                <td className="flex items-center gap-2 min-w-[180px]">
+                  <img
+                    className="size-8 rounded-lg object-cover"
+                    src={payment.clinte.image}
+                    alt="user"
+                  />
+                  <span className="truncate">{payment.clinte.name}</span>
+                </td>
+
+                <td className="min-w-[150px] truncate">{payment.title}</td>
+
+                <td>{payment.category}</td>
+
+                <td className="font-semibold">${payment.donete_amount}</td>
+
+                <td>{payment.location}</td>
+
+                <td className="min-w-[140px]">{payment.created_at}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
     );
 };

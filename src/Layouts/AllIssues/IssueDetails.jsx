@@ -13,11 +13,6 @@ const IssueDetails = () => {
   const { user } = use(AuthContext);
   const [refetch, setRefecth] = useState(false);
 
-  //   const issue = useLoaderData();
-  // const { _id } = useParams();
-  // const details = issue?.result;
-  // console.log(issue);
-
   useEffect(() => {
     fetch(
       `https://public-infrastructure-system-server.vercel.app/issues/${id}`,
@@ -30,8 +25,6 @@ const IssueDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         setIssue(data.result);
-        console.log(" Api called!");
-        console.log(data);
         setLoading(false);
       });
   }, [user, id, refetch]);
@@ -39,8 +32,6 @@ const IssueDetails = () => {
   const closeModal = () => {
     setIsOpen(false);
   };
-
-  // const nevigate = useNavigate()
 
   const handleDelete = () => {
     Swal.fire({
@@ -64,7 +55,6 @@ const IssueDetails = () => {
         )
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             navigate("/allissues");
 
             Swal.fire({
@@ -82,88 +72,86 @@ const IssueDetails = () => {
 
   return (
     <div className="bg-orange-100 rounded-3xl">
-      <div className="items-center md:w-[1000px] w-[448px]   rounded-3xl p-10  my-10 justify-center mx-auto">
-        <div className="flex md:flex-row flex-col mx-auto md:w-[1400px] w-[448px] p-5 gap-5 justify-center items-center m-5">
+      <div className="max-w-7xl mx-auto rounded-3xl px-4 sm:px-6 lg:px-10 py-6 lg:py-10 my-10">
+        <div className="flex flex-col lg:flex-row gap-8 items-center">
           <img
-            className="h-[300px] rounded-4xl shadow-md "
+            className="w-full sm:w-[80%] md:w-[60%] lg:w-[400px] 
+                     h-[250px] sm:h-[280px] md:h-[300px] 
+                     object-cover rounded-4xl shadow-md"
             src={issue?.image}
             alt=""
           />
-          <div className=" flex flex-col">
-            <div className=" md:w-[1020px] w-[448px] m-10 mb-5">
-              <div className="flex items-center-safe gap-3">
-                <h2 className="font-bold text-4xl">{issue?.title}</h2>
-                {/* <div className="flex  py-8 gap-1 items-center">
-                  <img className="h-[20px]" src={star} alt="" />
-                  <span>{issue?.rating}</span>
-                </div> */}
-              </div>
-              {/* <span className="text-gray-600 flex">
-                $<span className=" text-3xl"> {issue?.resoleve_bugget}</span>
-              </span> */}
-            </div>
-            <div className="m-10 mb-5">
-              <p className=" text-gray-400 w-xl">{issue?.description}</p>
+
+          <div className="flex flex-col w-full">
+            <div className="mb-4 text-center lg:text-left">
+              <h2 className="font-bold text-2xl sm:text-3xl lg:text-4xl">
+                {issue?.title}
+              </h2>
             </div>
 
-            <div className="flex   flex-col">
-              <div className="flex gap-50 m-10 mb-5">
-                <div className="flex gap-1 items-center">
-                  <span className="font-bold text-[18px]">Category : </span>
-                  <span className="font-semibold text-gray-500">
-                    {issue?.category}
-                  </span>
-                </div>
+            <div className="mb-6 text-center lg:text-left">
+              <p className="text-gray-400">{issue?.description}</p>
+            </div>
 
-                <div className="flex gap-1  items-center">
-                  <span className="font-bold text-[18px]">
-                    Resolve Amount : {issue?.resolve_bugget}$
-                  </span>
-                  <span className="font-semibold text-gray-500">{}</span>
-                </div>
-              </div>
-              <div className="flex  items-center w-xl justify-between m-10 mb-5 ">
-                <div className="flex   flex-col">
-                  <span className="text-gray-400">
-                    Provided By : {issue?.repoted_by}
-                  </span>
-                  <span className="text-gray-400">
-                    Email: {issue?.providerEmail}
-                  </span>
-                </div>
-
-                <Link to={""}>
-                  <button
-                    onClick={() => setIsOpen(true)}
-                    className="btn bg-amber-400  text-white"
-                  >
-                    pay
-                  </button>
-                  <PaymentModal
-                    issue={issue}
-                    closeModal={closeModal}
-                    isOpen={isOpen}
-                  />
-                </Link>
+            <div
+              className="flex flex-col md:flex-row justify-between 
+                          gap-4 mb-6 text-center md:text-left"
+            >
+              <div className="flex gap-1 justify-center md:justify-start">
+                <span className="font-bold text-[18px]">Category :</span>
+                <span className="font-semibold text-gray-500">
+                  {issue?.category}
+                </span>
               </div>
 
+              <div className="flex justify-center md:justify-start">
+                <span className="font-bold text-[18px]">
+                  Resolve Amount : {issue?.resolve_bugget}$
+                </span>
+              </div>
+            </div>
+
+            <div
+              className="flex flex-col md:flex-row items-center 
+                          justify-between gap-4 mb-6 
+                          text-center md:text-left"
+            >
               <div>
-                {/* <Link to={`/updatadb/${_id}`}> */}
-                <button className="btn bg-amber-400 ml-10 mx-auto text-white">
-                  {" "}
-                  Update{" "}
-                </button>
-                {/* </Link> */}
-                {/* <hr className='my-6' /> */}
-
-                <button
-                  onClick={handleDelete}
-                  className="btn bg-amber-400 ml-10 mx-auto text-white"
-                >
-                  {" "}
-                  Resolve{" "}
-                </button>
+                <span className="text-gray-400 block">
+                  Provided By : {issue?.repoted_by}
+                </span>
+                <span className="text-gray-400 block">
+                  Email: {issue?.providerEmail}
+                </span>
               </div>
+
+              <Link to={""} className="w-full md:w-auto">
+                <button
+                  onClick={() => setIsOpen(true)}
+                  className="btn bg-amber-400 text-white w-full md:w-auto"
+                >
+                  pay
+                </button>
+
+                <PaymentModal
+                  issue={issue}
+                  closeModal={closeModal}
+                  isOpen={isOpen}
+                />
+              </Link>
+            </div>
+
+            <div className="flex flex-row sm:flex-row gap-4">
+              <button className="btn bg-amber-400 text-white flex-1 md:flex-none w-full sm:w-auto">
+                Update
+              </button>
+
+              <button
+                onClick={handleDelete}
+                className="btn bg-amber-400 text-white flex-1 md:flex-none w-full sm:w-auto"
+              >
+                Resolve
+              </button>
             </div>
           </div>
         </div>

@@ -90,10 +90,11 @@ const Navber = () => {
             className="btn btn-ghost btn-circle avatar"
           >
             <div className="w-10 rounded-full">
-              <img
+              {user? <img src={user.photoURL}/>:<CgProfile size={40} />}
+              {/* <img
                 alt=""
                 src={user?(user.photoURL):(<CgProfile/>)}
-              />
+              /> */}
             </div>
           </div>
           <ul
