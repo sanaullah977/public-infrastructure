@@ -66,7 +66,7 @@ const AllIssues = () => {
               <div className="card bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden h-full flex flex-col transition-all duration-300 group-hover:shadow-md group-hover:-translate-y-1">
                 <figure className="bg-gray-50 flex items-center justify-center p-4 md:p-6 h-44 sm:h-48 md:h-52">
                   <img
-                    className="object-contain w-full h-full max-h-40 md:max-h-48 transition-transform duration-500 group-hover:scale-105"
+                    className="object-contain w-full h-full max-h-40 md:max-h-48 transition-transform duration-500 rounded-2xl group-hover:scale-105"
                     src={product.image}
                     alt={product.title || "Issue image"}
                   />

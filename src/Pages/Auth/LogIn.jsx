@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 // import { auth } from '../../firebase/firebase.config'
 import { PiGearFineDuotone } from "react-icons/pi";
 import { saveOrUpdateUser } from "../../Utiliti/User";
+import Swal from "sweetalert2";
 
 const LogIn = () => {
   const { signInUser, signInGoogle, loading, user } = useAuth();
@@ -35,7 +36,11 @@ const LogIn = () => {
       });
 
       navigate(from, { replace: true });
-      toast.success("Login Successful");
+      Swal.fire({
+        title: "Well Done!",
+        icon: "success",
+        draggable: true,
+      });
     } catch (err) {
       console.log(err);
       toast.error(err?.message);

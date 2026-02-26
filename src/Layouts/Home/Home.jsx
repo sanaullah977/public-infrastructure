@@ -9,7 +9,7 @@ import Covarage from '../../Component/Covarage/Covarage'; // assuming typo → C
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-amber-50/40">
+    <div className="min-h-screen  bg-amber-50/40">
       
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

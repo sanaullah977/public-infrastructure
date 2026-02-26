@@ -16,6 +16,7 @@
     "axios": "^1.13.4",
     "firebase": "^12.7.0",
     "flat-color-icons": "^1.1.0",
+    "hamburger-react": "^2.5.2",
     "install": "^0.13.0",
     "leaflet": "^1.9.4",
     "react": "^19.0.0-rc.1",

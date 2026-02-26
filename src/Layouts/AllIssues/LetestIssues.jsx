@@ -45,7 +45,7 @@ const LetestIssues = () => {
             >
               <figure>
                 <img
-                  className="h-[180px] w-full object-cover p-5"
+                  className="h-[180px] w-full object-cover rounded-2xl p-5"
                   src={product.image}
                   alt="Apps"
                 />

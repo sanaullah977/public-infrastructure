@@ -12,15 +12,15 @@ const Banner = () => {
        infiniteLoop={true}
        >
                 <div>
-                    <img className='rounded-2xl' src={P1} />
+                    <img className='rounded-xl' src={P1} />
                   
                 </div>
                 <div>
-                    <img className='rounded-2xl' src={P2} />
+                    <img className='rounded-xl' src={P2} />
                     
                 </div>
                 <div>
-                    <img className='rounded-2xl' src={P3} />
+                    <img className='rounded-xl' src={P3} />
                 
                 </div>
             </Carousel>

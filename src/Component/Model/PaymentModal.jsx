@@ -1,10 +1,15 @@
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 
 import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router";
 
 const PaymentModal = ({ closeModal, isOpen, issue }) => {
   const { user } = useAuth();
   const { id, category, title, location } = issue || {};
+  const navigate = useNavigate();
+   const Location = useLocation();
+  const from = Location.state || "/issuedetails/:id";
 
   const handlePayment = async (e) => {
     e.preventDefault();
@@ -40,10 +45,14 @@ const PaymentModal = ({ closeModal, isOpen, issue }) => {
       },
     )
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data, "Successfully added!");
-        console.log(paymentInfo);
-      })
+      navigate(from, { replace: true });
+      Swal.fire({
+              title: "Well Done!",
+              icon: "success",
+              draggable: true,
+              
+            })
+            // closeModal=true
       .catch((error) => {
         console.log(error);
       });

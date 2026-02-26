@@ -6,7 +6,7 @@ import coverImg from "../../../assets/profileIcon.jpg.png"
 const Profile = () => {
   const { user } = useAuth()
   const [role, isRoleLoading] = useRole()
- 
+//  await updateUserProfile(name, imageURL);
   console.log(role, isRoleLoading)
   return (
     <div className='flex justify-center items-center h-screen'>
