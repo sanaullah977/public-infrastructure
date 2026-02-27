@@ -17,7 +17,7 @@ const LogIn = () => {
 
   const from = location.state?.from?.pathname || "/";
 
-  if (loading) return <PiGearFineDuotone className="animate-spin m-auto" />;
+  // if (loading) return <PiGearFineDuotone size={70} className="animate-spin m-auto" />;
   if (user) return <Navigate to={from} replace={true} />;
 
   const handleSubmit = async (event) => {
@@ -60,7 +60,11 @@ const LogIn = () => {
         image: user?.photoURL,
       });
       navigate(from, { replace: true });
-      toast.success("Login Successful");
+      Swal.fire({
+        title: "Well Done!",
+        icon: "success",
+        draggable: true,
+      });
     } catch (err) {
       console.log(err);
       // setLoading(false)
@@ -120,13 +124,12 @@ const LogIn = () => {
           <div>
             <button
               type="submit"
-              className="bg-orange-500 w-full rounded-md py-3 text-white"
+              className="flex justify-center bg-orange-500 w-full items-center rounded-md py-3 text-white"
             >
-              {loading ? (
-                <PiGearFineDuotone className="animate-spin m-auto" />
-              ) : (
-                "Continue"
+              {loading && (
+                <PiGearFineDuotone size={20} className="animate-spin items-center" />
               )}
+               Continue
             </button>
           </div>
         </form>

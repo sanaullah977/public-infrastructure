@@ -195,13 +195,12 @@ const Register = () => {
           <div>
             <button
               type="submit"
-              className="bg-orange-500 w-full rounded-md py-3 text-white"
+              className="flex bg-orange-500 w-full rounded-md justify-center items-center py-3 text-white"
             >
-              {loading ? (
-                <PiGearFineDuotone className="animate-spin m-auto" />
-              ) : (
-                "Continue"
+              {loading && (
+                <PiGearFineDuotone size={20} className="animate-spin items-center" />
               )}
+             Continue
             </button>
           </div>
         </form>

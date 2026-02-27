@@ -3,6 +3,7 @@ import Logo from "../Logo/Logo";
 import { Link, NavLink } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import { CgProfile } from "react-icons/cg";
+import ThemeToggle from "../Theame/TheameToggle";
 
 const Navber = () => {
   const { user, setUser, logout, role } = useAuth();
@@ -82,8 +83,11 @@ const Navber = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{Navber}</ul>
         </div>
-
-        <div className="navbar-end dropdown dropdown-end">
+        
+        <div className="navbar-end items-center gap-7">
+          <span><ThemeToggle/></span>
+          <div className=" dropdown dropdown-end  duration-200">
+          
           <div
             tabIndex={0}
             role="button"
@@ -97,13 +101,14 @@ const Navber = () => {
               /> */}
             </div>
           </div>
+          
           <ul
             tabIndex="-1"
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <Link to='/dashboard/profile'>
             <li>
-              <a className="justify-between">
+              <a className="justify-between hover:bg-gray-100 dark:hover:bg-gray-700">
                 Profile
                 <span className="badge">New</span>
               </a>
@@ -111,11 +116,11 @@ const Navber = () => {
             
             </Link>
            <Link to='/dashboard'>
-            <li>
+            <li className="hover:bg-gray-100 dark:hover:bg-gray-700">
               <a>Dashboard</a>
             </li>
            </Link>
-            <li className=" hover:bg-gray-200">
+            <li className=" hover:bg-gray-100 dark:hover:bg-gray-700">
               {user ? (
                 <a onClick={handleLogout} className="">
                   Log Out
@@ -128,6 +133,7 @@ const Navber = () => {
               )}
             </li>
           </ul>
+        </div>
         </div>
       </div>
     </div>
