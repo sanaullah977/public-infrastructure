@@ -75,162 +75,188 @@ const Register = () => {
     }
   };
   return (
-    <div className="flex justify-center items-center min-h-screen bg-white">
-      <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
-        <div className="mb-8 text-center">
-          <h1 className="my-3 text-4xl font-bold">Sign Up</h1>
-          <p className="text-sm text-gray-400">Welcome to Civic Build</p>
-        </div>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          noValidate=""
-          action=""
-          className="space-y-6 ng-untouched ng-pristine ng-valid"
-        >
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="email" className="block mb-2 text-sm">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                placeholder="Enter Your Name Here"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-orange-500 bg-gray-200 text-gray-900"
-                data-temp-mail-org="0"
-                {...register("name", {
-                  required: "Name is required",
-                  maxLength: {
-                    value: 20,
-                    message: "Name cannot be too long",
-                  },
-                })}
-              />
-              {errors.name && (
-                <p className="text-red-500 text-xs mt-1">
-                  {errors.name.message}
-                </p>
-              )}
-            </div>
-            {/* Image */}
-            <div>
-              <label
-                htmlFor="image"
-                className="block mb-2 text-sm font-medium text-gray-700"
-              >
-                Profile Image
-              </label>
-              <input
-                name="image"
-                type="file"
-                id="image"
-                accept="image/*"
-                className="block w-full text-sm text-gray-500
-      file:mr-4 file:py-2 file:px-4
-      file:rounded-md file:border-0
-      file:text-sm file:font-semibold
-      file:bg-orange-50 file:text-orange-700
-      hover:file:bg-orange-100
-      bg-gray-100 border border-dashed border-orange-300 rounded-md cursor-pointer
-      focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400
-      py-2"
-                {...register("image")}
-              />
-              <p className="mt-1 text-xs text-gray-400">
-                PNG, JPG or JPEG (max 2MB)
-              </p>
-            </div>
-            <div>
-              <label htmlFor="email" className="block mb-2 text-sm">
-                Email address
-              </label>
-              <input
-                type="email"
-                id="email"
-                placeholder="Enter Your Email Here"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-orange-500 bg-gray-200 text-gray-900"
-                data-temp-mail-org="0"
-                {...register("email", {
-                  required: "Email is required",
-                  pattern: {
-                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                    message: "Please enter a valid email address.",
-                  },
-                })}
-              />
-              {errors.email && (
-                <p className="text-red-500 text-xs mt-1">
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
-            <div>
-              <div className="flex justify-between">
-                <label htmlFor="password" className="text-sm mb-2">
-                  Password
-                </label>
-              </div>
-              <input
-                type="password"
-                autoComplete="new-password"
-                id="password"
-                placeholder="*******"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-orange-500 bg-gray-200 text-gray-900"
-                {...register("password", {
-                  required: "Password is required",
-                  minLength: {
-                    value: 6,
-                    message: "Password must be at least 6 characters",
-                  },
-                })}
-              />
-              {errors.password && (
-                <p className="text-red-500 text-xs mt-1">
-                  {errors.password.message}
-                </p>
-              )}
-            </div>
-          </div>
+   <div className="flex justify-center items-center min-h-screen 
+                bg-white dark:bg-slate-950 
+                transition-colors duration-300">
 
-          <div>
-            <button
-              type="submit"
-              className="flex bg-orange-500 w-full rounded-md justify-center items-center py-3 text-white"
-            >
-              {loading && (
-                <PiGearFineDuotone size={20} className="animate-spin items-center" />
-              )}
-             Continue
-            </button>
-          </div>
-        </form>
-        <div className="flex items-center pt-4 space-x-1">
-          <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
-          <p className="px-3 text-sm dark:text-gray-400">
-            Signup with social accounts
-          </p>
-          <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
-        </div>
-        <div
-          onClick={handleGoogleSignIn}
-          className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
-        >
-          <FcGoogle size={32} />
+  <div className="flex flex-col max-w-md w-full p-6 sm:p-10 rounded-2xl
+                  bg-gray-100 dark:bg-slate-900
+                  text-gray-900 dark:text-gray-100
+                  shadow-xl transition-colors duration-300">
 
-          <p>Continue with Google</p>
-        </div>
-        <p className="px-6 text-sm text-center text-gray-400">
-          Already have an account?{" "}
-          <Link
-            to="/login"
-            className="hover:underline hover:text-orange-500 text-gray-600"
-          >
-            Login
-          </Link>
-          .
-        </p>
-      </div>
+    {/* Header */}
+    <div className="mb-8 text-center">
+      <h1 className="my-3 text-4xl font-bold">Sign Up</h1>
+      <p className="text-sm text-gray-500 dark:text-gray-400">
+        Welcome to Civic Build
+      </p>
     </div>
+
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate=""
+      className="space-y-6"
+    >
+      <div className="space-y-4">
+
+        {/* Name */}
+        <div>
+          <label className="block mb-2 text-sm">Name</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter Your Name Here"
+            className="w-full px-3 py-2 border rounded-md
+                       border-gray-300 dark:border-slate-700
+                       bg-gray-200 dark:bg-slate-800
+                       text-gray-900 dark:text-gray-200
+                       focus:outline-none focus:ring-2 focus:ring-orange-500
+                       transition-colors"
+            {...register("name")}
+          />
+          {errors.name && (
+            <p className="text-red-500 text-xs mt-1">
+              {errors.name.message}
+            </p>
+          )}
+        </div>
+
+        {/* Image Upload */}
+        <div>
+          <label className="block mb-2 text-sm font-medium 
+                            text-gray-700 dark:text-gray-300">
+            Profile Image
+          </label>
+
+          <input
+            name="image"
+            type="file"
+            accept="image/*"
+            className="block w-full text-sm
+                       text-gray-500 dark:text-gray-400
+                       file:mr-4 file:py-2 file:px-4
+                       file:rounded-md file:border-0
+                       file:text-sm file:font-semibold
+                       file:bg-orange-50 dark:file:bg-orange-500
+                       file:text-orange-700 dark:file:text-orange-300
+                       hover:file:bg-orange-100 dark:hover:file:bg-orange-800
+                       bg-gray-100 dark:bg-slate-800
+                       border border-dashed border-orange-300 dark:border-orange-700
+                       rounded-md cursor-pointer
+                       focus:outline-none focus:ring-2 focus:ring-orange-400
+                       py-2 transition-colors"
+            {...register("image")}
+          />
+
+          <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+            PNG, JPG or JPEG (max 2MB)
+          </p>
+        </div>
+
+        {/* Email */}
+        <div>
+          <label className="block mb-2 text-sm">Email address</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter Your Email Here"
+            className="w-full px-3 py-2 border rounded-md
+                       border-gray-300 dark:border-slate-700
+                       bg-gray-200 dark:bg-slate-800
+                       text-gray-900 dark:text-gray-200
+                       focus:outline-none focus:ring-2 focus:ring-orange-500
+                       transition-colors"
+            {...register("email")}
+          />
+          {errors.email && (
+            <p className="text-red-500 text-xs mt-1">
+              {errors.email.message}
+            </p>
+          )}
+        </div>
+
+        {/* Password */}
+        <div>
+          <label className="block mb-2 text-sm">Password</label>
+          <input
+            type="password"
+            autoComplete="new-password"
+            id="password"
+            placeholder="*******"
+            className="w-full px-3 py-2 border rounded-md
+                       border-gray-300 dark:border-slate-700
+                       bg-gray-200 dark:bg-slate-800
+                       text-gray-900 dark:text-gray-200
+                       focus:outline-none focus:ring-2 focus:ring-orange-500
+                       transition-colors"
+            {...register("password")}
+          />
+          {errors.password && (
+            <p className="text-red-500 text-xs mt-1">
+              {errors.password.message}
+            </p>
+          )}
+        </div>
+
+      </div>
+
+      {/* Submit Button */}
+      <button
+        type="submit"
+        className="flex justify-center items-center gap-2
+                   bg-orange-500 hover:bg-orange-600
+                   w-full rounded-md py-3
+                   text-white font-medium
+                   transition-all duration-200"
+      >
+        {loading && (
+          <PiGearFineDuotone size={20} className="animate-spin" />
+        )}
+        Continue
+      </button>
+
+    </form>
+
+    {/* Divider */}
+    <div className="flex items-center pt-6 space-x-3">
+      <div className="flex-1 h-px bg-gray-300 dark:bg-slate-700"></div>
+      <p className="text-sm text-gray-500 dark:text-gray-400">
+        Signup with social accounts
+      </p>
+      <div className="flex-1 h-px bg-gray-300 dark:bg-slate-700"></div>
+    </div>
+
+    {/* Google Sign In */}
+    <div
+      onClick={handleGoogleSignIn}
+      className="flex justify-center items-center gap-3
+                 border border-gray-300 dark:border-slate-700
+                 bg-white dark:bg-slate-800
+                 hover:bg-gray-50 dark:hover:bg-slate-700
+                 rounded-md m-3 p-3
+                 cursor-pointer transition-colors"
+    >
+      <FcGoogle size={26} />
+      <p className="text-gray-700 dark:text-gray-200">
+        Continue with Google
+      </p>
+    </div>
+
+    {/* Login Link */}
+    <p className="px-6 text-sm text-center text-gray-500 dark:text-gray-400">
+      Already have an account?{" "}
+      <Link
+        to="/login"
+        className="text-gray-700 dark:text-gray-200
+                   hover:text-orange-500 hover:underline"
+      >
+        Login
+      </Link>
+      .
+    </p>
+
+  </div>
+</div>
   );
 };
 

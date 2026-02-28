@@ -71,92 +71,100 @@ const IssueDetails = () => {
   };
 
   return (
-    <div className="bg-orange-100 rounded-3xl">
-      <div className="max-w-7xl mx-auto rounded-3xl px-4 sm:px-6 lg:px-10 py-6 lg:py-10 my-10">
-        <div className="flex flex-col lg:flex-row gap-8 items-center">
-          <img
-            className="w-full sm:w-[80%] md:w-[60%] lg:w-[400px] 
-                     h-[250px] sm:h-[280px] md:h-[300px] 
-                     object-cover rounded-4xl shadow-md"
-            src={issue?.image}
-            alt=""
-          />
+    <div className="bg-orange-100 p-1 dark:bg-slate-800 rounded-xl transition-colors duration-300">
+  <div className="max-w-7xl mx-auto rounded-3xl px-4 sm:px-6 lg:px-10 py-6 lg:py-10 my-10 bg-orange-50  dark:bg-slate-600 shadow-md dark:shadow-slate-900/40 transition-colors duration-300">
+    
+    <div className="flex flex-col lg:flex-row gap-8 items-center">
+      
+      <img
+        className="w-full sm:w-[80%] md:w-[60%] lg:w-[400px] 
+                   h-[250px] sm:h-[280px] md:h-[300px] 
+                   object-cover rounded-xl shadow-md"
+        src={issue?.image}
+        alt=""
+      />
 
-          <div className="flex flex-col w-full">
-            <div className="mb-4 text-center lg:text-left">
-              <h2 className="font-bold text-2xl sm:text-3xl lg:text-4xl">
-                {issue?.title}
-              </h2>
-            </div>
+      <div className="flex flex-col w-full">
 
-            <div className="mb-6 text-center lg:text-left">
-              <p className="text-gray-400">{issue?.description}</p>
-            </div>
+        <div className="mb-4 text-center lg:text-left">
+          <h2 className="font-bold text-2xl sm:text-3xl lg:text-4xl text-gray-900 dark:text-white transition-colors duration-300">
+            {issue?.title}
+          </h2>
+        </div>
 
-            <div
-              className="flex flex-col md:flex-row justify-between 
-                          gap-4 mb-6 text-center md:text-left"
-            >
-              <div className="flex gap-1 justify-center md:justify-start">
-                <span className="font-bold text-[18px]">Category :</span>
-                <span className="font-semibold text-gray-500">
-                  {issue?.category}
-                </span>
-              </div>
+        <div className="mb-6 text-center lg:text-left">
+          <p className="text-gray-500 dark:text-gray-300 transition-colors duration-300">
+            {issue?.description}
+          </p>
+        </div>
 
-              <div className="flex justify-center md:justify-start">
-                <span className="font-bold text-[18px]">
-                  Resolve Amount : {issue?.resolve_bugget}$
-                </span>
-              </div>
-            </div>
+        <div
+          className="flex flex-col md:flex-row justify-between 
+                      gap-4 mb-6 text-center md:text-left"
+        >
+          <div className="flex gap-1 justify-center md:justify-start">
+            <span className="font-bold text-[18px] text-gray-900 dark:text-gray-200">
+              Category :
+            </span>
+            <span className="font-semibold text-gray-600 dark:text-gray-400">
+              {issue?.category}
+            </span>
+          </div>
 
-            <div
-              className="flex flex-col md:flex-row items-center 
-                          justify-between gap-4 mb-6 
-                          text-center md:text-left"
-            >
-              <div>
-                <span className="text-gray-400 block">
-                  Provided By : {issue?.repoted_by}
-                </span>
-                <span className="text-gray-400 block">
-                  Email: {issue?.providerEmail}
-                </span>
-              </div>
-
-              <Link to={""} className="w-full md:w-auto">
-                <button
-                  onClick={() => setIsOpen(true)}
-                  className="btn bg-amber-400 text-white w-full md:w-auto"
-                >
-                  pay
-                </button>
-
-                <PaymentModal
-                  issue={issue}
-                  closeModal={closeModal}
-                  isOpen={isOpen}
-                />
-              </Link>
-            </div>
-
-            <div className="flex flex-row sm:flex-row gap-4">
-              <button className="btn bg-amber-400 text-white flex-1 md:flex-none w-full sm:w-auto">
-                Update
-              </button>
-
-              <button
-                onClick={handleDelete}
-                className="btn bg-amber-400 text-white flex-1 md:flex-none w-full sm:w-auto"
-              >
-                Resolve
-              </button>
-            </div>
+          <div className="flex justify-center md:justify-start">
+            <span className="font-bold text-[18px] text-gray-900 dark:text-gray-200">
+              Resolve Amount : {issue?.resolve_bugget}$
+            </span>
           </div>
         </div>
+
+        <div
+          className="flex flex-col md:flex-row items-center 
+                      justify-between gap-4 mb-6 
+                      text-center md:text-left"
+        >
+          <div>
+            <span className="text-gray-500 dark:text-gray-400 block">
+              Provided By : {issue?.repoted_by}
+            </span>
+            <span className="text-gray-500 dark:text-gray-400 block">
+              Email: {issue?.providerEmail}
+            </span>
+          </div>
+
+          <Link to={""} className="w-full md:w-auto">
+            <button
+              onClick={() => setIsOpen(true)}
+              className="btn bg-amber-400 hover:bg-amber-500 dark:bg-amber-500 dark:hover:bg-amber-600 text-white w-full md:w-auto transition-colors duration-300"
+            >
+              Pay
+            </button>
+
+            <PaymentModal
+              issue={issue}
+              closeModal={closeModal}
+              isOpen={isOpen}
+            />
+          </Link>
+        </div>
+
+        <div className="flex flex-row sm:flex-row gap-4">
+          <button className="btn bg-amber-400 hover:bg-amber-500 dark:bg-amber-500 dark:hover:bg-amber-600 text-white flex-1 md:flex-none w-full sm:w-auto transition-colors duration-300">
+            Update
+          </button>
+
+          <button
+            onClick={handleDelete}
+            className="btn bg-amber-400 hover:bg-amber-500 dark:bg-amber-500 dark:hover:bg-amber-600 text-white flex-1 md:flex-none w-full sm:w-auto transition-colors duration-300"
+          >
+            Resolve
+          </button>
+        </div>
+
       </div>
     </div>
+  </div>
+</div>
   );
 };
 

@@ -6,7 +6,7 @@ const ThemeToggle = () => {
 
   return (
    <label
-   onClick={() => setDark(!dark)}
+   onChange={() => setDark(!dark)}
     className="swap swap-rotate">
   {/* this hidden checkbox controls the state */}
   <input type="checkbox" />

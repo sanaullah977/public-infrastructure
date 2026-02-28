@@ -1,7 +1,7 @@
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
-import UpdatePlantForm from '../Form/UpdatePlantForm'
 
-const UpdatePlantModal = ({ setIsEditModalOpen, isOpen }) => {
+
+const UpdateIssueModal = ({ setIsEditModalOpen, isOpen }) => {
   return (
     <Dialog
       open={isOpen}
@@ -39,4 +39,4 @@ const UpdatePlantModal = ({ setIsEditModalOpen, isOpen }) => {
   )
 }
 
-export default UpdatePlantModal
+export default UpdateIssueModal

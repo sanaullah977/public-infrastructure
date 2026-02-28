@@ -73,100 +73,147 @@ const LogIn = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-white">
-      <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
-        <div className="mb-8 text-center">
-          <h1 className="my-3 text-4xl font-bold">Log In</h1>
-          <p className="text-sm text-gray-400">
-            Sign in to access your account
-          </p>
-        </div>
+    <div className="flex justify-center items-center min-h-screen 
+                bg-white dark:bg-slate-950 
+                transition-colors duration-300">
 
-        <form
-          onSubmit={handleSubmit}
-          noValidate=""
-          action=""
-          className="space-y-6 ng-untouched ng-pristine ng-valid"
-        >
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="email" className="block mb-2 text-sm">
-                Email address
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                required
-                placeholder="Enter Your Email Here"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-orange-500 bg-gray-200 text-gray-900"
-                data-temp-mail-org="0"
-              />
-            </div>
-            <div>
-              <div className="flex justify-between">
-                <label htmlFor="password" className="text-sm mb-2">
-                  Password
-                </label>
-              </div>
-              <input
-                type="password"
-                name="password"
-                autoComplete="current-password"
-                id="password"
-                required
-                placeholder="*******"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-orange-500 bg-gray-200 text-gray-900"
-              />
-            </div>
-          </div>
+  <div className="flex flex-col max-w-md w-full p-6 sm:p-10 rounded-2xl
+                  bg-gray-100 dark:bg-slate-900
+                  text-gray-900 dark:text-gray-100
+                  shadow-xl transition-colors duration-300">
 
-          <div>
-            <button
-              type="submit"
-              className="flex justify-center bg-orange-500 w-full items-center rounded-md py-3 text-white"
-            >
-              {loading && (
-                <PiGearFineDuotone size={20} className="animate-spin items-center" />
-              )}
-               Continue
-            </button>
-          </div>
-        </form>
-        <div className="space-y-1">
-          <button className="text-xs hover:underline hover:text-orange-500 text-gray-400 cursor-pointer">
-            Forgot password?
-          </button>
-        </div>
-        <div className="flex items-center pt-4 space-x-1">
-          <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
-          <p className="px-3 text-sm dark:text-gray-400">
-            Login with social accounts
-          </p>
-          <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
-        </div>
-        <div
-          onClick={handleGoogleSignIn}
-          className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
-        >
-          <FcGoogle size={32} />
-
-          <p>Continue with Google</p>
-        </div>
-
-        <p className="px-6 text-sm text-center text-gray-400">
-          Don&apos;t have an account yet?{" "}
-          <Link
-            state={from}
-            to="/register"
-            className="hover:underline hover:text-orange-500 text-gray-600"
-          >
-            Sign up
-          </Link>
-          .
-        </p>
-      </div>
+    {/* Header */}
+    <div className="mb-8 text-center">
+      <h1 className="my-3 text-4xl font-bold">
+        Log In
+      </h1>
+      <p className="text-sm text-gray-500 dark:text-gray-400">
+        Sign in to access your account
+      </p>
     </div>
+
+    {/* Form */}
+    <form
+      onSubmit={handleSubmit}
+      noValidate=""
+      className="space-y-6"
+    >
+
+      <div className="space-y-4">
+
+        {/* Email */}
+        <div>
+          <label htmlFor="email" className="block mb-2 text-sm">
+            Email address
+          </label>
+
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            placeholder="Enter Your Email Here"
+            className="w-full px-3 py-2 border rounded-md
+                       border-gray-300 dark:border-slate-700
+                       bg-gray-200 dark:bg-slate-800
+                       text-gray-900 dark:text-gray-200
+                       focus:outline-none focus:ring-2 focus:ring-orange-500
+                       transition-colors"
+          />
+        </div>
+
+        {/* Password */}
+        <div>
+          <label htmlFor="password" className="block mb-2 text-sm">
+            Password
+          </label>
+
+          <input
+            type="password"
+            name="password"
+            autoComplete="current-password"
+            id="password"
+            required
+            placeholder="*******"
+            className="w-full px-3 py-2 border rounded-md
+                       border-gray-300 dark:border-slate-700
+                       bg-gray-200 dark:bg-slate-800
+                       text-gray-900 dark:text-gray-200
+                       focus:outline-none focus:ring-2 focus:ring-orange-500
+                       transition-colors"
+          />
+        </div>
+
+      </div>
+
+      {/* Submit Button */}
+      <div>
+        <button
+          type="submit"
+          className="flex justify-center items-center gap-2
+                     bg-orange-500 hover:bg-orange-600
+                     w-full rounded-md py-3
+                     text-white font-medium
+                     transition-all duration-200"
+        >
+          {loading && (
+            <PiGearFineDuotone size={20} className="animate-spin" />
+          )}
+          Continue
+        </button>
+      </div>
+
+    </form>
+
+    {/* Forgot Password */}
+    <div className="space-y-1 mt-4">
+      <button className="text-xs text-gray-500 dark:text-gray-400
+                         hover:text-orange-500 hover:underline">
+        Forgot password?
+      </button>
+    </div>
+
+    {/* Divider */}
+    <div className="flex items-center pt-6 space-x-3">
+      <div className="flex-1 h-px bg-gray-300 dark:bg-slate-700"></div>
+      <p className="text-sm text-gray-500 dark:text-gray-400">
+        Login with social accounts
+      </p>
+      <div className="flex-1 h-px bg-gray-300 dark:bg-slate-700"></div>
+    </div>
+
+    {/* Google Sign In */}
+    <div
+      onClick={handleGoogleSignIn}
+      className="flex justify-center items-center gap-3
+                 border border-gray-300 dark:border-slate-700
+                 bg-white dark:bg-slate-800
+                 hover:bg-gray-50 dark:hover:bg-slate-700
+                 rounded-md m-3 p-3
+                 cursor-pointer transition-colors"
+    >
+      <FcGoogle size={26} />
+      <p className="text-gray-700 dark:text-gray-200">
+        Continue with Google
+      </p>
+    </div>
+
+    {/* Register Link */}
+    <p className="px-6 text-sm text-center text-gray-500 dark:text-gray-400">
+      Don&apos;t have an account yet?{" "}
+      <Link
+        state={from}
+        to="/register"
+        className="text-gray-700 dark:text-gray-200
+                   hover:text-orange-500 hover:underline"
+      >
+        Sign up
+      </Link>
+      .
+    </p>
+
+  </div>
+</div>
   );
 };
 

@@ -13,27 +13,44 @@ const ClinteMenu = () => {
   }
 
   return (
-    <>
+   <>
 
-    <MenuItem
-        icon={BsFillHouseAddFill}
-        label='Add Issue'
-        address='/addissues'
-      />
-      <MenuItem icon={BsFingerprint} label='My Payment' address='my-payment' />
-      <MenuItem icon={MdHomeWork} label='My Reports' address='/myissue' />
+  <MenuItem
+    icon={BsFillHouseAddFill}
+    label="Add Issue"
+    address="/addissues"
+  />
 
-      <div
-        onClick={() => setIsOpen(true)}
-        className='flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform text-gray-600  hover:bg-gray-300   hover:text-gray-700 cursor-pointer'
-      >
-        <GrUserAdmin className='w-5 h-5' />
+  <MenuItem
+    icon={BsFingerprint}
+    label="My Payment"
+    address="/my-payment"
+  />
 
-        <span className='mx-4 font-medium'>Become A Staffe</span>
-      </div>
+  <MenuItem
+    icon={MdHomeWork}
+    label="My Reports"
+    address="/myissue"
+  />
 
-      <BecomeSellerModal closeModal={closeModal} isOpen={isOpen} />
-    </>
+  <div
+    onClick={() => setIsOpen(true)}
+    className="flex items-center px-4 py-2 mt-5 
+               text-gray-600 dark:text-gray-300
+               hover:bg-gray-300 dark:hover:bg-slate-800
+               hover:text-gray-700 dark:hover:text-white
+               transition-colors duration-300 transform
+               cursor-pointer"
+  >
+    <GrUserAdmin className="w-5 h-5" />
+    <span className="mx-4 font-medium">
+      Become A Staffe
+    </span>
+  </div>
+
+  <BecomeSellerModal closeModal={closeModal} isOpen={isOpen} />
+
+</>
   )
 }
 
