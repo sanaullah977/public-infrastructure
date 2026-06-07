@@ -17,6 +17,15 @@ const UserDataRow = ({ user, refetch }) => {
     </p>
   </td>
 
+   <td className="px-5 py-5 
+                 border-b border-gray-200 dark:border-slate-700
+                 bg-white dark:bg-slate-900 
+                 text-sm transition-colors">
+    <p className="text-gray-900 dark:text-gray-200 transition-colors">
+      {user?.created_at}
+    </p>
+  </td>
+
   <td className="px-5 py-5 
                  border-b border-gray-200 dark:border-slate-700
                  bg-white dark:bg-slate-900 
@@ -44,7 +53,7 @@ const UserDataRow = ({ user, refetch }) => {
                    transition-colors"
       ></span>
 
-      <span className="relative">
+      <span className="relative text-center">
         Update Role
       </span>
     </span>

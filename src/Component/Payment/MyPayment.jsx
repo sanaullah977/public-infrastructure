@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
 import LoadingSpinner from '../Dashboard/Common/LoadingSpinner';
+import { ColorRing } from 'react-loader-spinner';
 
 const MyPayment = () => {
 
@@ -36,8 +37,21 @@ const MyPayment = () => {
         });
     }, [user?.email]);
 
-     if (loading) return 
-  <LoadingSpinner />
+      if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-orange-50">
+        <ColorRing
+visible={true}
+height="80"
+width="80"
+ariaLabel="color-ring-loading"
+wrapperStyle={{}}
+wrapperClass="color-ring-wrapper"
+colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+/>
+      </div>
+    );
+  }
 
     
     return (

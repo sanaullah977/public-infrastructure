@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData, Link } from "react-router";
 import LoadingSpinner from "../../Component/Dashboard/Common/LoadingSpinner";
+import { ColorRing } from "react-loader-spinner";
 
 const AllIssues = () => {
   const [loading, setLoading] = useState(true);
@@ -13,8 +14,20 @@ const AllIssues = () => {
     }
   }, [data]);
 
-  if (loading) {
-    return <LoadingSpinner />;
+    if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-orange-50">
+        <ColorRing
+visible={true}
+height="80"
+width="80"
+ariaLabel="color-ring-loading"
+wrapperStyle={{}}
+wrapperClass="color-ring-wrapper"
+colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+/>
+      </div>
+    );
   }
 
   // category filter logic

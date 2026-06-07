@@ -7,9 +7,9 @@ import StaffeMenu from '../../Component/Dashboard/Sidebar/Menu/StaffeMenu'
 
 const DashboardLayout = () => {
   return (
-   <div className="relative min-h-screen md:flex 
+   <div className="relative h-auto md:flex 
                 bg-white dark:bg-slate-950 
-                transition-colors duration-300">
+                transition-colors duration-300  ">
 
   {/* Left Side: Sidebar */}
   <Sidebar />

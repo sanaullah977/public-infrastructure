@@ -41,7 +41,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="bg-gray-100 dark:bg-slate-900 text-gray-800 dark:text-gray-200 flex justify-between md:hidden items-center transition-colors duration-300">
+      <div className="bg-gray-100 dark:bg-slate-900  text-gray-800  dark:text-gray-200 flex justify-between md:hidden items-center transition-colors duration-300">
         <div>
           <div className="block cursor-pointer p-4 font-bold">
             <Link to="/dashboard/profile">
@@ -99,7 +99,7 @@ const Sidebar = () => {
                         mx-auto transition-colors duration-300"
             >
               <Link to="/">
-                <img src={logo} alt="logo" width="100" height="100" />
+                <img className={'rounded-full'} src={logo} alt="logo" width="100" height="100" />
               </Link>
             </div>
           </div>

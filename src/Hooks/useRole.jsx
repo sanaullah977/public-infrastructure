@@ -10,9 +10,7 @@ console.log({user,loading,email:user.email})
     enabled: !loading && !!user?.email,
     queryKey: ['role', user?.email],
     queryFn: async () => {
-      console.log('fucntion kaj korche')
       const result = await axiosSecure(`/user/role`)
-      console.log({result})
       return result.data.role
     },
   })

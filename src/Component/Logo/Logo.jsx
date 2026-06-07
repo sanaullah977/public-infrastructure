@@ -1,6 +1,7 @@
 import React from 'react'
 import Icon from '../../assets/A flat vector icon f.png'
 
+
 const Logo = () => {
   return (
     <div className='flex gap-1 items-center'>

@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import { CgProfile } from "react-icons/cg";
 import ThemeToggle from "../Theame/TheameToggle";
+import Icon from '../../assets/A flat vector icon f.png'
 
 const Navber = () => {
   const { user, setUser, logout, role } = useAuth();
@@ -20,36 +21,52 @@ const Navber = () => {
   const Navber = (
     <>
       <li className="font-semibold">
-        <NavLink to="">
-          <a>Home</a>
+        <NavLink to=""
+        className={({ isActive }) =>
+          isActive
+            ? "border-b-2 border-orange-600 pb-1"
+            : "hover:border-b-2 hover:border-gray-200 pb-1"}>
+          Home
         </NavLink>
       </li>
       <li className="font-semibold">
-        <NavLink to="allissues">
-          <a>All Issues</a>
+        <NavLink to="allissues" className={({ isActive }) =>
+          isActive
+            ? "border-b-2 border-orange-600 pb-1"
+            : "hover:border-b-2 hover:border-gray-200 pb-1"}>
+          All Issues
         </NavLink>
       </li>
       <li className="font-semibold">
-        <NavLink to="addissues">
-          <a>Add Issue</a>
+        <NavLink to="addissues" className={({ isActive }) =>
+          isActive
+            ? "border-b-2 border-orange-600 pb-1"
+            : "hover:border-b-2 hover:border-gray-200 pb-1"}>
+          Add Issue
+        </NavLink>
+      </li>
+      <li className="font-semibold" >
+        <NavLink to="myissue" className={({ isActive }) =>
+          isActive
+            ? "border-b-2 border-orange-600 pb-1"
+            : "hover:border-b-2 hover:border-gray-200 pb-1"}>
+          My Report
         </NavLink>
       </li>
       <li className="font-semibold">
-        <NavLink to="myissue">
-          <a>My Report</a>
-        </NavLink>
-      </li>
-      <li className="font-semibold">
-        <NavLink to="my-payment">
-          <a>My Payment</a>
+        <NavLink to="my-payment" className={({ isActive }) =>
+          isActive
+            ? "border-b-2 border-orange-600 pb-1"
+            : "hover:border-b-2 hover:border-gray-200 pb-1"}>
+          My Payment
         </NavLink>
       </li>
       
     </>
   );
   return (
-    <div >
-      <div className="navbar  bg-base-100 shadow-sm">
+    <div className="" >
+      <div className="navbar fixed z-50 top-0 left-0 w-full bg-base-100 shadow-sm">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -77,7 +94,10 @@ const Navber = () => {
             </ul>
           </div>
           <a className=" btn-ghost text-xl">
-            <Logo />
+            <div className='flex gap-1 items-center'>
+                 <img className='h-12' src={Icon} alt="" />
+                 <p className='font-bold'>Civic<span className='text-amber-600 font-bold'>Build</span></p>
+               </div>
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">

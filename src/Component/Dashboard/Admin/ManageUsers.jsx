@@ -49,6 +49,17 @@ const ManageUsers = () => {
                   Email
                 </th>
 
+                <th scope="col"
+                  className="px-5 py-3 
+                             bg-white dark:bg-slate-800
+                             border-b border-gray-200 dark:border-slate-700
+                             text-gray-800 dark:text-gray-200
+                             text-left text-sm uppercase font-normal
+                             transition-colors"
+                             >
+                  Time
+                </th>
+
                 <th
                   scope="col"
                   className="px-5 py-3 

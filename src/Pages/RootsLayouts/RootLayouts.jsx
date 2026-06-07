@@ -6,8 +6,8 @@ import Footer from '../../Component/Footer/Footer'
 const RootLayouts = () => {
   return (
     <div>
-      <Navber/>
-      <Outlet/>
+     <Navber/>
+      <div className='py-16'><Outlet/></div>
       <Footer/>
     </div>
   )

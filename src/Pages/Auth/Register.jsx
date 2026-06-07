@@ -11,12 +11,17 @@ import { toast } from "react-toastify";
 import { PiGearFineDuotone } from "react-icons/pi";
 import { imageUpload, saveOrUpdateUser } from "../../Utiliti/User";
 import Swal from "sweetalert2";
+import { useState } from "react";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
   const { registerUser, updateUserProfile, signInGoogle, loading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state || "/";
+    const [showPass, setShowPass] = useState(false);
+  
 
   const {
     register,
@@ -77,7 +82,8 @@ const Register = () => {
   return (
    <div className="flex justify-center items-center min-h-screen 
                 bg-white dark:bg-slate-950 
-                transition-colors duration-300">
+                transition-colors duration-300"
+                >
 
   <div className="flex flex-col max-w-md w-full p-6 sm:p-10 rounded-2xl
                   bg-gray-100 dark:bg-slate-900
@@ -176,27 +182,35 @@ const Register = () => {
         </div>
 
         {/* Password */}
-        <div>
-          <label className="block mb-2 text-sm">Password</label>
-          <input
-            type="password"
-            autoComplete="new-password"
-            id="password"
-            placeholder="*******"
-            className="w-full px-3 py-2 border rounded-md
+        <div className="relative items-center">
+                      <label htmlFor="password" className="block mb-2 text-sm">
+                        Password
+                      </label>
+        
+                      <input
+                        type={showPass ? "text" : "password"}
+                        name="password"
+                        autoComplete="current-password"
+                        id="password"
+                        required
+                        placeholder="*******"
+                        className="w-full px-3 py-2 border rounded-md
                        border-gray-300 dark:border-slate-700
                        bg-gray-200 dark:bg-slate-800
                        text-gray-900 dark:text-gray-200
                        focus:outline-none focus:ring-2 focus:ring-orange-500
                        transition-colors"
-            {...register("password")}
-          />
-          {errors.password && (
-            <p className="text-red-500 text-xs mt-1">
-              {errors.password.message}
-            </p>
-          )}
-        </div>
+                      />
+        
+                      <span
+                        onClick={() => setShowPass(!showPass)}
+                        className="absolute right-3 top-9 cursor-pointer 
+                       text-gray-600 dark:text-gray-400 mt-1
+                       hover:text-orange-500 transition duration-300"
+                      >
+                        {showPass ? <FaEye /> : <FaEyeSlash />}
+                      </span>
+                    </div>
 
       </div>
 
