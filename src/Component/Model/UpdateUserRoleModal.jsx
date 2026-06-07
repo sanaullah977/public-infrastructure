@@ -1,10 +1,16 @@
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import useAxiosSecure from '../../Hooks/useAxiosSecure'
 import toast from 'react-hot-toast'
 
 const UpdateUserRoleModal = ({ isOpen, closeModal, user, refetch }) => {
   const [updatedRole, setUpdatedRole] = useState(user?.role)
+
+  useEffect(() => {
+    if (user?.role) {
+      setUpdatedRole(user.role)
+    }
+  }, [user])
 
   const axiosSecure = useAxiosSecure()
 

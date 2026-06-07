@@ -36,8 +36,7 @@ const Sidebar = () => {
     setActive(!isActive);
   };
 
-  if (isRoleLoading) return;
-  <LoadingSpinner />;
+  if (isRoleLoading) return <LoadingSpinner />;
 
   return (
     <>
@@ -130,7 +129,7 @@ const Sidebar = () => {
             />
 
             <button
-              onClick={logout}
+              onClick={handleLogout}
               className="flex cursor-pointer w-full items-center px-4 py-2 mt-5 
                      text-gray-600 dark:text-gray-300
                      hover:bg-gray-300 dark:hover:bg-slate-800
@@ -138,7 +137,7 @@ const Sidebar = () => {
                      transition-colors duration-300 transform"
             >
               <GrLogout className="w-5 h-5" />
-              <span onClick={handleLogout} className="mx-4 font-medium">
+              <span className="mx-4 font-medium">
                 Logout
               </span>
             </button>
