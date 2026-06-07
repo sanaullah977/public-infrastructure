@@ -17,7 +17,14 @@ createRoot(document.getElementById("root")).render(
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <ThemeProvider>
-          <RouterProvider router={router} />
+          <RouterProvider 
+            router={router} 
+            hydrateFallbackElement={
+              <div className="flex items-center justify-center min-h-screen bg-orange-50 dark:bg-slate-900 text-gray-800 dark:text-white font-medium">
+                Loading...
+              </div>
+            }
+          />
         </ThemeProvider>
       </AuthProvider>
     </QueryClientProvider>
