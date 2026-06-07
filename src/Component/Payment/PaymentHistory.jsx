@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useLoaderData } from "react-router";
 import LoadingSpinner from "../Dashboard/Common/LoadingSpinner";
 
 const PaymentHistory = () => {
   const payment = useLoaderData();
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (payment) {
-      setLoading(false);
-    }
-  }, [payment]);
-
-  if (loading) return <LoadingSpinner />;
+  if (!payment) return <LoadingSpinner />;
 
   return (
     <div className="px-4 sm:px-6 lg:px-10 py-6">

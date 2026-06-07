@@ -11,7 +11,6 @@ const IssueDetails = () => {
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const { user } = use(AuthContext);
-  const [refetch, setRefecth] = useState(false);
 
   useEffect(() => {
     fetch(
@@ -27,7 +26,15 @@ const IssueDetails = () => {
         setIssue(data.result);
         setLoading(false);
       });
-  }, [user, id, refetch]);
+  }, [user, id]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-orange-50 dark:bg-slate-900 text-gray-800 dark:text-white font-medium">
+        Loading...
+      </div>
+    );
+  }
 
   const closeModal = () => {
     setIsOpen(false);
@@ -54,7 +61,7 @@ const IssueDetails = () => {
           },
         )
           .then((res) => res.json())
-          .then((data) => {
+          .then(() => {
             navigate("/allissues");
 
             Swal.fire({

@@ -12,26 +12,26 @@ const MyIssue = () => {
 
   useEffect(() => {
     if (!user?.email) {
-      setLoading(false);
-      return;
+      const timer = setTimeout(() => setLoading(false), 0);
+      return () => clearTimeout(timer);
     }
 
-    fetch(`https://public-infrastructure-system-server.vercel.app/issues?email=${user.email}`,{
-     headers: {
+    fetch(`https://public-infrastructure-system-server.vercel.app/issues?email=${user.email}`, {
+      headers: {
         authorization: `Bearer ${user.accessToken}`,
       },
     })
       .then((res) => res.json())
       .then((data) => {
         setIssues(data);
-        console.log(data)
+        console.log(data);
         setLoading(false);
       })
       .catch((err) => {
         console.error("Failed to load issues:", err);
         setLoading(false);
       });
-  }, [user?.email]); 
+  }, [user?.email, user?.accessToken]); 
 
   if (loading) {
     return (

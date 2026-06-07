@@ -7,7 +7,6 @@ import AuthProvider from "./Context/AuthProvider.jsx";
 import {
   QueryClient,
   QueryClientProvider,
-  useQuery,
 } from "@tanstack/react-query";
 import { ThemeProvider } from "./Context/ThemeProvider.jsx";
 

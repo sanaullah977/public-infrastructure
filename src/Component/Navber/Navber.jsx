@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Logo from "../Logo/Logo";
 import { Link, NavLink } from "react-router";
 import useAuth from "../../Hooks/useAuth";
@@ -7,7 +7,7 @@ import ThemeToggle from "../Theame/TheameToggle";
 import Icon from '../../assets/A flat vector icon f.png'
 
 const Navber = () => {
-  const { user, setUser, logout, role } = useAuth();
+  const { user, logout, role } = useAuth();
   console.log(user,role);
 
   const handleLogout = () => {

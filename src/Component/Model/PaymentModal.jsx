@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router";
 
 const PaymentModal = ({ closeModal, isOpen, issue }) => {
   const { user } = useAuth();
-  const { id, category, title, location } = issue || {};
+  const { id, category, title } = issue || {};
   const navigate = useNavigate();
    const Location = useLocation();
   const from = Location.state || "/issuedetails/:id";
@@ -29,35 +29,28 @@ const PaymentModal = ({ closeModal, isOpen, issue }) => {
         image: user?.photoURL,
       },
     };
-    // const { data } = await axios.post(
-    //   `${import.meta.env.VITE_API_URL}/create-checkout-session`,
-    //   paymentInfo,
-    // );
 
-    await fetch(
-      `https://public-infrastructure-system-server.vercel.app/payment/${id}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+    try {
+      const res = await fetch(
+        `https://public-infrastructure-system-server.vercel.app/payment/${id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(paymentInfo),
         },
-        body: JSON.stringify(paymentInfo),
-      },
-    )
-      .then((res) => res.json())
+      );
+      await res.json();
       navigate(from, { replace: true });
       Swal.fire({
-              title: "Well Done!",
-              icon: "success",
-              draggable: true,
-              
-            })
-            // closeModal=true
-      .catch((error) => {
-        console.log(error);
+        title: "Well Done!",
+        icon: "success",
+        draggable: true,
       });
-
-    // window.location.href = data.url;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

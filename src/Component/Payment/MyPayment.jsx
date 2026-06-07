@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
 import LoadingSpinner from '../Dashboard/Common/LoadingSpinner';
 import { ColorRing } from 'react-loader-spinner';
@@ -16,12 +15,12 @@ const MyPayment = () => {
 
    useEffect(() => {
       if (!user?.email) {
-        setLoading(false);
-        return;
+        const timer = setTimeout(() => setLoading(false), 0);
+        return () => clearTimeout(timer);
       }
   // http://localhost:3000/payment
-      fetch(`https://public-infrastructure-system-server.vercel.app/payment?email=${user.email}`,{
-       headers: {
+      fetch(`https://public-infrastructure-system-server.vercel.app/payment?email=${user.email}`, {
+        headers: {
           authorization: `Bearer ${user.accessToken}`,
         },
       })
@@ -35,7 +34,7 @@ const MyPayment = () => {
           console.error("Failed to load issues:", err);
           setLoading(false);
         });
-    }, [user?.email]);
+    }, [user?.email, user?.accessToken]);
 
       if (loading) {
     return (

@@ -10,7 +10,6 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../Component/firebase/firebase.init";
-import useAuth from "../Hooks/useAuth";
 
 const googleProvider = new GoogleAuthProvider();
 

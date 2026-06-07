@@ -1,6 +1,6 @@
 // import axios from 'axios'
 // import React, { useEffect } from 'react'
-import { Link, useSearchParams } from 'react-router'
+import { Link } from 'react-router'
 import { IoBagCheckOutline } from 'react-icons/io5'
 const PaymentSuccess = () => {
   // const [searchParams] = useSearchParams()
