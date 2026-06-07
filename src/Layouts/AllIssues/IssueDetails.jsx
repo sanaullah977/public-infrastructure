@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Context/AuthContext";
 import PaymentModal from "../../Component/Model/PaymentModal";
+import useRole from "../../Hooks/useRole";
 
 const IssueDetails = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const IssueDetails = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
   const { user } = use(AuthContext);
+  const [role] = useRole();
 
   useEffect(() => {
     fetch(
@@ -206,21 +208,23 @@ const IssueDetails = () => {
               </div>
             </div>
 
-            <div className="flex flex-row sm:flex-row gap-4">
-              <button
-                onClick={() => setIsEditModalOpen(true)}
-                className="btn bg-amber-400 hover:bg-amber-500 dark:bg-amber-500 dark:hover:bg-amber-600 text-white flex-1 md:flex-none w-full sm:w-auto transition-colors duration-300"
-              >
-                Update
-              </button>
+            {role === "admin" && (
+              <div className="flex flex-row sm:flex-row gap-4">
+                <button
+                  onClick={() => setIsEditModalOpen(true)}
+                  className="btn bg-amber-400 hover:bg-amber-500 dark:bg-amber-500 dark:hover:bg-amber-600 text-white flex-1 md:flex-none w-full sm:w-auto transition-colors duration-300"
+                >
+                  Update
+                </button>
 
-              <button
-                onClick={handleDelete}
-                className="btn bg-amber-400 hover:bg-amber-500 dark:bg-amber-500 dark:hover:bg-amber-600 text-white flex-1 md:flex-none w-full sm:w-auto transition-colors duration-300"
-              >
-                Resolve
-              </button>
-            </div>
+                <button
+                  onClick={handleDelete}
+                  className="btn bg-amber-400 hover:bg-amber-500 dark:bg-amber-500 dark:hover:bg-amber-600 text-white flex-1 md:flex-none w-full sm:w-auto transition-colors duration-300"
+                >
+                  Resolve
+                </button>
+              </div>
+            )}
 
           </div>
         </div>
