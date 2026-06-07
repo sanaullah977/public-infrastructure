@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router";
 
 const PaymentModal = ({ closeModal, isOpen, issue }) => {
   const { user } = useAuth();
-  const { id, category, title } = issue || {};
+  const { _id: id, category, title } = issue || {};
   const navigate = useNavigate();
    const Location = useLocation();
   const from = Location.state || "/issuedetails/:id";
