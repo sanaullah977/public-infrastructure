@@ -126,29 +126,25 @@ const Navber = () => {
             tabIndex="-1"
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
-            <Link to='/dashboard/profile'>
             <li>
-              <a className="justify-between hover:bg-gray-100 dark:hover:bg-gray-700">
+              <Link to='/dashboard/profile' className="justify-between hover:bg-gray-100 dark:hover:bg-gray-700">
                 Profile
                 <span className="badge">New</span>
-              </a>
+              </Link>
             </li>
             
-            </Link>
-           <Link to='/dashboard'>
             <li className="hover:bg-gray-100 dark:hover:bg-gray-700">
-              <a>Dashboard</a>
+              <Link to='/dashboard'>Dashboard</Link>
             </li>
-           </Link>
-            <li className=" hover:bg-gray-100 dark:hover:bg-gray-700">
+
+            <li className="hover:bg-gray-100 dark:hover:bg-gray-700">
               {user ? (
-                <a onClick={handleLogout} className="">
+                <a onClick={handleLogout} className="cursor-pointer">
                   Log Out
                 </a>
               ) : (
-                <Link to="/login">
-                  {" "}
-                  <a className="">Log In</a>
+                <Link to="/login" className="">
+                  Log In
                 </Link>
               )}
             </li>
