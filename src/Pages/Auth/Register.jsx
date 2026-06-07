@@ -118,7 +118,7 @@ const Register = () => {
                        text-gray-900 dark:text-gray-200
                        focus:outline-none focus:ring-2 focus:ring-orange-500
                        transition-colors"
-            {...register("name")}
+            {...register("name", { required: "Name is required" })}
           />
           {errors.name && (
             <p className="text-red-500 text-xs mt-1">
@@ -135,7 +135,6 @@ const Register = () => {
           </label>
 
           <input
-            name="image"
             type="file"
             accept="image/*"
             className="block w-full text-sm
@@ -151,8 +150,13 @@ const Register = () => {
                        rounded-md cursor-pointer
                        focus:outline-none focus:ring-2 focus:ring-orange-400
                        py-2 transition-colors"
-            {...register("image")}
+            {...register("image", { required: "Profile image is required" })}
           />
+          {errors.image && (
+            <p className="text-red-500 text-xs mt-1">
+              {errors.image.message}
+            </p>
+          )}
 
           <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
             PNG, JPG or JPEG (max 2MB)
@@ -172,7 +176,7 @@ const Register = () => {
                        text-gray-900 dark:text-gray-200
                        focus:outline-none focus:ring-2 focus:ring-orange-500
                        transition-colors"
-            {...register("email")}
+            {...register("email", { required: "Email is required" })}
           />
           {errors.email && (
             <p className="text-red-500 text-xs mt-1">
@@ -183,34 +187,44 @@ const Register = () => {
 
         {/* Password */}
         <div className="relative items-center">
-                      <label htmlFor="password" className="block mb-2 text-sm">
-                        Password
-                      </label>
-        
-                      <input
-                        type={showPass ? "text" : "password"}
-                        name="password"
-                        autoComplete="current-password"
-                        id="password"
-                        required
-                        placeholder="*******"
-                        className="w-full px-3 py-2 border rounded-md
+          <label htmlFor="password" className="block mb-2 text-sm">
+            Password
+          </label>
+
+          <input
+            type={showPass ? "text" : "password"}
+            autoComplete="current-password"
+            id="password"
+            placeholder="*******"
+            className="w-full px-3 py-2 border rounded-md
                        border-gray-300 dark:border-slate-700
                        bg-gray-200 dark:bg-slate-800
                        text-gray-900 dark:text-gray-200
                        focus:outline-none focus:ring-2 focus:ring-orange-500
                        transition-colors"
-                      />
-        
-                      <span
-                        onClick={() => setShowPass(!showPass)}
-                        className="absolute right-3 top-9 cursor-pointer 
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 6,
+                message: "Password must be at least 6 characters"
+              }
+            })}
+          />
+
+          <span
+            onClick={() => setShowPass(!showPass)}
+            className="absolute right-3 top-9 cursor-pointer 
                        text-gray-600 dark:text-gray-400 mt-1
                        hover:text-orange-500 transition duration-300"
-                      >
-                        {showPass ? <FaEye /> : <FaEyeSlash />}
-                      </span>
-                    </div>
+          >
+            {showPass ? <FaEye /> : <FaEyeSlash />}
+          </span>
+          {errors.password && (
+            <p className="text-red-500 text-xs mt-1">
+              {errors.password.message}
+            </p>
+          )}
+        </div>
 
       </div>
 
